@@ -5,6 +5,7 @@ using АЗС;
 using System.IO;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
+using System.Runtime.CompilerServices;
 
 internal class Program
 {
@@ -238,6 +239,7 @@ internal class Program
                 "Выберите из списка станций или из списка топлива\n" +
                 "1-показать список станций 2-показать список топлива"
             );
+        Console.Write("Ввод: ");
         string answer = Console.ReadLine();
         while (answer != "1" && answer != "2")
         {
@@ -255,9 +257,40 @@ internal class Program
         int counter = 0;
         foreach (Station station in stationList)
         {   
-            counter++;
-            Console.WriteLine($"{counter}. {station.name}");
+            //counter++;
+            //Console.WriteLine($"{counter}. {station.name}"); 
+            Console.WriteLine($"{station.name}");
         }
+    }
+
+    public static string EnterGasStation(List<Station> stationList)
+    {
+        string selectedStation;
+        List<string> stationNames = new List<string>();                                              //как преобразовать можно???
+
+        foreach (Station station in stationList)
+            stationNames.Add(station.name.ToUpper());
+
+        while (true)
+        {
+            PrintStationList(stationList);                                      // метод выводит список станций и возвращает введенную станцию, нужно ли это разделять и как????
+            Station tempStation = new Station();
+            Console.Write("Ввод: ");
+            selectedStation = Console.ReadLine().ToUpper();
+
+            if (!(stationNames.Contains(selectedStation)))
+            {
+                Console.WriteLine();
+                Console.WriteLine(
+                        "Введенной станции нет в списке! \n" +
+                        "Попробуйте снова \n"
+                    );
+                continue;
+            }
+            else
+                break;
+        }
+        return selectedStation;
     }
 
     private static void Main(string[] args)
@@ -360,19 +393,22 @@ internal class Program
         Console.WriteLine();
         Console.WriteLine("В данной системе вы можете оформить заказ топлива в одной из АЗС города!");
         Console.WriteLine();
+        
         /*
         int choiceBtwStationListOrFuelList = ChooseToPrintFuelOrStationList(stationList, allGasList); // 1 - список станций 
 
         string myFuelType = "";
-        int fuelAmount = 0;
+        string selectedGasStationName = "";
 
         if (choiceBtwStationListOrFuelList == 1)
-            PrintStationList(stationList);
+            selectedGasStationName = EnterGasStation(stationList);
         else
-            ShowFuelList();
+            myFuelType = EnterFuelType(allGasList);
+
+        Console.WriteLine($"{selectedGasStationName} {myFuelType}");
         */
 
-        
+        /*
         while (true)
         {
             Order(allGasList, stationList, discounts);
@@ -383,7 +419,7 @@ internal class Program
             else if (answer == "2")
                 break;
         }
-        
+        */
     }
 
     public static void Order(List<string> allGasList, List<Station> stationList, Dictionary<int, int> discounts)
