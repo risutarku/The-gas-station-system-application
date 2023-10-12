@@ -234,7 +234,46 @@ internal class Program
         }
     }
 
-    public static int  ChooseToPrintFuelOrStationList(List<Station> stationList, List<string> fuel)
+    public static  void PrintMessageChooseToPrintFuelOrStationList()
+    {
+        Console.WriteLine(
+                "Выберите из списка станций или из списка топлива\n" +
+                "1-показать список станций 2-показать список топлива"
+            );
+
+    }
+
+    public static int CheckAnswerChooseToPrintFuelOrStationList(string answer)
+    {
+        if (answer != "1" && answer != "2")
+            return 0;
+        else if (answer == "1")
+            return 1;
+        else 
+            return 2;
+    }
+
+
+    public static int ChooseToPrintFuelOrStationList()
+    {
+        Console.WriteLine(
+                "Выберите из списка станций или из списка топлива\n" +
+                "1-показать список станций 2-показать список топлива"
+            );
+        Console.Write("Ввод: ");
+
+        string answer = Console.ReadLine();
+        while (CheckAnswerChooseToPrintFuelOrStationList(answer) == 0)
+        {
+            Console.WriteLine("Неправильный ввод! Попробуйте снова");
+            answer = Console.ReadLine();
+        }
+
+        return CheckAnswerChooseToPrintFuelOrStationList(answer);
+    }
+
+    /*
+    public static int ChooseToPrintFuelOrStationList()
     {
         Console.WriteLine(
                 "Выберите из списка станций или из списка топлива\n" +
@@ -253,6 +292,7 @@ internal class Program
         else
             return 2;
     }
+    */
 
     public static void PrintStationList(List<Station> stationList)
     {
@@ -265,46 +305,103 @@ internal class Program
         }
     }
 
-    public static Station EnterGasStation(List<Station> stationList)
+
+    /*
+     * цикл с методами 
+     * (
+     *      вывод станций
+     *      считывание станции
+     *      проверка
+     *      если условие 
+     *      (возвращаем станцию, прекращаем цикл)
+     *      иначе 
+     *      (след итерация)
+     * )
+     */
+    public static int CheckStationInStatlionList(List<Station> stationList, string selectedStationName)
+    {
+        foreach (Station station in stationList)
+            if (station.name.ToUpper() == selectedStationName.ToUpper())
+                return 1;
+        return 2;
+    }
+
+    public static Station GetGasStation1(List<Station> stationList, string stationName)
+    {
+        Station tempStation = new Station();
+        foreach (Station station in stationList)
+            if (station.name.ToUpper() == stationName)//найти станцию ?
+                tempStation = station;
+        return tempStation;
+    }
+
+    public static Station GetGasStation(List<Station> stationList)
     {
         string selectedStationName;
-        List<string> stationNames = new List<string>(); //как преобразовать можно???
-
+        List<string> stationNames = GenerateStationNamesList(stationList);
         Station tempStation = new Station();
-
-        foreach (Station station in stationList)
-            stationNames.Add(station.name.ToUpper());
 
         while (true)
         {
-            PrintStationList(stationList); // метод вызывает вывод списка станций и возвращает введенную станцию, нужно ли это разделять и как????
-
+            PrintStationList(stationList);
             Console.Write("Ввод: ");
             selectedStationName = Console.ReadLine().ToUpper();
+            if (CheckStationInStatlionList(stationList, selectedStationName) == 1)
+                return GetGasStation1(stationList, selectedStationName);
+            else
+                continue;
+        }
 
+        static List<string> GenerateStationNamesList(List<Station> stationList)
+        {
+            List<string> stationNames = new List<string>(); //как преобразовать можно???
 
             foreach (Station station in stationList)
-            {
-                if (station.name.ToUpper() == selectedStationName)//найти станцию ?
-                {
-                    tempStation = station;
-                    break;    
-                }
-            }
-            if (tempStation.name.ToUpper() != selectedStationName.ToUpper())// сообщить об ошибке
-            {
-                Console.WriteLine();
-                Console.WriteLine(
-                        "Введенной станции нет в списке! \n" +
-                        "Попробуйте снова \n"
-                    );
-                continue;
-            }
-            else
-                break;
+                stationNames.Add(station.name.ToUpper());
+            return stationNames;
         }
-            return tempStation;
     }
+
+    //public static Station GetGasStation(List<Station> stationList)
+    //{
+    //    string selectedStationName;
+    //    List<string> stationNames = new List<string>(); //как преобразовать можно???
+
+    //    Station tempStation = new Station();
+
+    //    foreach (Station station in stationList)
+    //        stationNames.Add(station.name.ToUpper());
+
+    //    while (true)
+    //    {
+    //        PrintStationList(stationList); // метод вызывает вывод списка станций и возвращает введенную станцию, нужно ли это разделять и как????
+
+    //        Console.Write("Ввод: ");
+    //        selectedStationName = Console.ReadLine().ToUpper();
+
+
+    //        foreach (Station station in stationList)
+    //        {
+    //            if (station.name.ToUpper() == selectedStationName)//найти станцию ?
+    //            {
+    //                tempStation = station;
+    //                break;
+    //            }
+    //        }
+    //        if (tempStation.name.ToUpper() != selectedStationName.ToUpper())// сообщить об ошибке
+    //        {
+    //            Console.WriteLine();
+    //            Console.WriteLine(
+    //                    "Введенной станции нет в списке! \n" +
+    //                    "Попробуйте снова \n"
+    //                );
+    //            continue;
+    //        }
+    //        else
+    //            break;
+    //    }
+    //    return tempStation;
+    //}
 
     public static void PrintStationInfoByName(List<Station> stationList, Station selectedStation)
     {
@@ -457,14 +554,14 @@ internal class Program
     {
         while (true)
         {
-            int choiceBtwStationListOrFuelList = ChooseToPrintFuelOrStationList(stationList, allGasList); // 1 - список станций 
+            int choiceBtwStationListOrFuelList = ChooseToPrintFuelOrStationList(); // 1 - список станций 
 
             string myFuelType = "";
             Station selectedGasStation;
 
             if (choiceBtwStationListOrFuelList == 1)
             {
-                selectedGasStation = EnterGasStation(stationList);
+                selectedGasStation = GetGasStation(stationList);
                 selectedGasStation.PrintInfo();
                 myFuelType = EnterFuelType(selectedGasStation.gas); 
                 
