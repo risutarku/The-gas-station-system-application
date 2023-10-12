@@ -19,18 +19,14 @@ namespace АЗС
             get { return bonusAmount; } set { bonusAmount = value; }
         }
 
-        public int totalPurchaseAmount
-        {
-            get { return totalPurchaseAmount; } set { totalPurchaseAmount = value; }
-        }
+        //public int totalPurchaseAmount
+        //{
+        //    get { return totalPurchaseAmount; } set { totalPurchaseAmount = value; }
+        //}
 
         private BonusCard()
         {
             bonusAmount = 0;
-            totalPurchaseAmount = 0;
         }
-
-
-
     }
 }

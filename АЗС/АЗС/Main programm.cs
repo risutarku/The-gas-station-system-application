@@ -241,6 +241,7 @@ internal class Program
                 "1-показать список станций 2-показать список топлива"
             );
         Console.Write("Ввод: ");
+
         string answer = Console.ReadLine();
         while (answer != "1" && answer != "2")
         {
@@ -450,7 +451,6 @@ internal class Program
             else if (answer == "2")
                 break;
         }
-        
     }
 
     public static void Order(List<string> allGasList, List<Station> stationList, Dictionary<int, int> discounts)
@@ -509,8 +509,6 @@ internal class Program
                         break;
                     }
                 }
-                
-
             }
             else
             {

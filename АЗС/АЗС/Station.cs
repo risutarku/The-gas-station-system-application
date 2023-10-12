@@ -40,12 +40,12 @@ namespace АЗС
                 GasReserve = gasAmount
             };
         }
+
         public Station()
         {
             name = "неизвестно";
             address = "неизвестно";
         }
-        
 
         public string Name
         { 
