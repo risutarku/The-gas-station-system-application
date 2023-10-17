@@ -25,15 +25,6 @@ internal class Program
         Console.WriteLine();
     }
 
-    public static string EnterFuelType()
-    {
-        string chosenFuel;
-        Console.Write("Ввод: ");
-        chosenFuel = Console.ReadLine().ToUpper().Trim();
-
-        return chosenFuel;
-    }
-
     public static string GetFuelType(List<string> fuel) // 
     {
         string chosenFuel;
@@ -44,15 +35,23 @@ internal class Program
 
             if (!(fuel.Contains(chosenFuel)))
             {
-                IncorrectFuelInputMessage();
+                IncorrectFuelInputErrorMessage();
                 continue;
             }
             else
-                break;
+                return chosenFuel;
         }
-        return chosenFuel;
 
-        static void IncorrectFuelInputMessage()
+        static string EnterFuelType()
+        {
+            string chosenFuel;
+            Console.Write("Ввод: ");
+            chosenFuel = Console.ReadLine().ToUpper().Trim();
+
+            return chosenFuel;
+        }
+
+        static void IncorrectFuelInputErrorMessage()
         {
             Console.WriteLine();
             Console.WriteLine(
@@ -62,32 +61,46 @@ internal class Program
         }
     }
     
-
-    public static int EnterFuelAmount() // ввод литров топлива
+    public static int GetFuelAmount() // ввод литров топлива
     {
-        Console.WriteLine();
-        Console.WriteLine("Введите объём топлива (в литрах)");
-        Console.Write("Ввод: ");
-        string fuelAmount = Console.ReadLine().Trim();
-        if (int.TryParse(fuelAmount, out int amount))
+        static string EnterFuelAmount()
         {
-            if (amount > 0)
+            Console.WriteLine("Введите объём топлива (в литрах)");
+            Console.Write("Ввод: ");
+            string fuelAmount = Console.ReadLine().Trim();
+            return fuelAmount;
+        }
+
+        static int CheckCorrectInput(string inputFuelAmount)
+        {
+            if (int.TryParse(inputFuelAmount, out int fuelAmount))
             {
-                Console.WriteLine("Вы ввели {0}л", amount);
-                return amount;
+                Console.WriteLine("Вы ввели {0}л", fuelAmount);
+                return fuelAmount;
             }
             else
-            {
-                Console.WriteLine("Некорректный ввод, попробуйте снова");
-                return EnterFuelAmount();
-            }
+                return 0;
         }
-        else 
+
+        static void IncorrectFuelAmountInpurErrorMessage()
         {
-            Console.WriteLine("Некорректный ввод, попробуйте снова");
-            return EnterFuelAmount();
+            Console.WriteLine("Некорректный ввод, введите целое положительное число");
         }
-        return 0;
+
+        while (true)
+        {
+            string inputFuelAmount = EnterFuelAmount();
+            int fuelAmount = CheckCorrectInput(inputFuelAmount);
+
+            if (fuelAmount == 0)
+            {
+                IncorrectFuelAmountInpurErrorMessage();
+                continue;
+
+            }
+            else
+                return fuelAmount;
+        }
     }
 
     public static bool IsGasAvailable(string myFuelType, int fuelAmount, Station gasStation) // проверка станции на наличие данного количества и типа топлива
@@ -139,7 +152,7 @@ internal class Program
             while (availableStations.Count == 0)
             {
                 myFuelType = GetFuelType(fuel);
-                fuelAmount = EnterFuelAmount();
+                fuelAmount = GetFuelAmount();
                 availableStations = GetAvailableStations(gasStations, myFuelType, fuelAmount);
             }
             PrintStationsWithPrice(myFuelType, fuelAmount, availableStations);
@@ -577,7 +590,7 @@ internal class Program
                 selectedGasStation.PrintInfo();
                 myFuelType = GetFuelType(selectedGasStation.gas); 
                 
-                int fuelAmount = EnterFuelAmount();
+                int fuelAmount = GetFuelAmount();
                 //List<Station> availableStations = GetAvailableStations(stationList, myFuelType, fuelAmount);
                 //ShowAvailableStationsWithPrice(ref availableStations, stationList, ref myFuelType, ref fuelAmount, allGasList);
 
@@ -623,7 +636,7 @@ internal class Program
             else
             {
                 myFuelType = GetFuelType(allGasList);
-                int fuelAmount = EnterFuelAmount();
+                int fuelAmount = GetFuelAmount();
                 List<Station> availableStations = GetAvailableStations(stationList, myFuelType, fuelAmount);
                 ShowAvailableStationsWithPrice(ref availableStations, stationList, ref myFuelType, ref fuelAmount, allGasList);
 
