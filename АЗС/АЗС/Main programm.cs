@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 internal class Program
 {
-    public static void ShowFuelList(List<string> fuel) //вывод списка топлива
+    public static void ShowFuelList(List<string> fuel) //вывод списка топлива // done
     {
         string fuelMenu = "";
         Console.WriteLine("Выберите тип топлива:\n");
@@ -25,28 +25,41 @@ internal class Program
         Console.WriteLine();
     }
 
-    public static string EnterFuelType(List<string> fuel)
+    public static string EnterFuelType()
+    {
+        string chosenFuel;
+        Console.Write("Ввод: ");
+        chosenFuel = Console.ReadLine().ToUpper().Trim();
+
+        return chosenFuel;
+    }
+
+    public static string GetFuelType(List<string> fuel) // 
     {
         string chosenFuel;
         while (true)
         {
             ShowFuelList(fuel);
-            Console.Write("Ввод: ");
-            chosenFuel = Console.ReadLine().ToUpper();
+            chosenFuel = EnterFuelType();
 
             if (!(fuel.Contains(chosenFuel)))
             {
-                Console.WriteLine();
-                Console.WriteLine(
-                        "Выбранного типа топлива нет в списке! \n" +
-                        "Попробуйте снова \n"
-                    );
+                IncorrectFuelInputMessage();
                 continue;
             }
             else
                 break;
         }
         return chosenFuel;
+
+        static void IncorrectFuelInputMessage()
+        {
+            Console.WriteLine();
+            Console.WriteLine(
+                    "Выбранного типа топлива нет в списке! \n" +
+                    "Попробуйте снова \n"
+                );
+        }
     }
     
 
@@ -125,7 +138,7 @@ internal class Program
                 );
             while (availableStations.Count == 0)
             {
-                myFuelType = EnterFuelType(fuel);
+                myFuelType = GetFuelType(fuel);
                 fuelAmount = EnterFuelAmount();
                 availableStations = GetAvailableStations(gasStations, myFuelType, fuelAmount);
             }
@@ -205,6 +218,7 @@ internal class Program
 
     public static string RestartOrder()
     {
+        Console.WriteLine();
         Console.WriteLine(
                         "Вы желаете оформить заказ заново?\n" +
                         "1-Да 2-Выйти из приложения"
@@ -326,7 +340,7 @@ internal class Program
         return 2;
     }
 
-    public static Station GetGasStation1(List<Station> stationList, string stationName)
+    public static Station GetGasStationByName(List<Station> stationList, string stationName)
     {
         Station tempStation = new Station();
         foreach (Station station in stationList)
@@ -338,8 +352,7 @@ internal class Program
     public static Station GetGasStation(List<Station> stationList)
     {
         string selectedStationName;
-        List<string> stationNames = GenerateStationNamesList(stationList);
-        Station tempStation = new Station();
+        List<string> stationNames = FillStationNamesList(stationList);
 
         while (true)
         {
@@ -347,14 +360,14 @@ internal class Program
             Console.Write("Ввод: ");
             selectedStationName = Console.ReadLine().ToUpper();
             if (CheckStationInStatlionList(stationList, selectedStationName) == 1)
-                return GetGasStation1(stationList, selectedStationName);
+                return GetGasStationByName(stationList, selectedStationName);
             else
                 continue;
         }
 
-        static List<string> GenerateStationNamesList(List<Station> stationList)
+        static List<string> FillStationNamesList(List<Station> stationList)
         {
-            List<string> stationNames = new List<string>(); //как преобразовать можно???
+            List<string> stationNames = new List<string>();
 
             foreach (Station station in stationList)
                 stationNames.Add(station.name.ToUpper());
@@ -541,7 +554,6 @@ internal class Program
         while (true)
         {
             Order(allGasList, stationList, discounts);
-            Console.WriteLine();
             string answer = RestartOrder();
             if (answer == "1")
                 continue;
@@ -563,7 +575,7 @@ internal class Program
             {
                 selectedGasStation = GetGasStation(stationList);
                 selectedGasStation.PrintInfo();
-                myFuelType = EnterFuelType(selectedGasStation.gas); 
+                myFuelType = GetFuelType(selectedGasStation.gas); 
                 
                 int fuelAmount = EnterFuelAmount();
                 //List<Station> availableStations = GetAvailableStations(stationList, myFuelType, fuelAmount);
@@ -595,21 +607,22 @@ internal class Program
                 }
                 else if (answer == "2")
                 {
-                    answer = RestartOrder();
-                    if (answer == "1")
-                    {
-                        Console.WriteLine();
-                        continue;
-                    }
-                    else if (answer == "2")
-                    {
-                        break;
-                    }
+                    //answer = RestartOrder();
+                    //if (answer == "1")
+                    //{
+                    //    Console.WriteLine();
+                    //    continue;
+                    //}
+                    //else if (answer == "2")
+                    //{
+                    //    break;
+                    //}
+                    break;
                 }
             }
             else
             {
-                myFuelType = EnterFuelType(allGasList);
+                myFuelType = GetFuelType(allGasList);
                 int fuelAmount = EnterFuelAmount();
                 List<Station> availableStations = GetAvailableStations(stationList, myFuelType, fuelAmount);
                 ShowAvailableStationsWithPrice(ref availableStations, stationList, ref myFuelType, ref fuelAmount, allGasList);
@@ -645,16 +658,17 @@ internal class Program
                 }
                 else if (answer == "2")
                 {
-                    answer = RestartOrder();
-                    if (answer == "1")
-                    {
-                        Console.WriteLine();
-                        continue;
-                    }
-                    else if (answer == "2")
-                    {
-                        break;
-                    }
+                    //answer = RestartOrder();
+                    //if (answer == "1")
+                    //{
+                    //    Console.WriteLine();
+                    //    continue;
+                    //}
+                    //else if (answer == "2")
+                    //{
+                    //    break;
+                    //}
+                    break;
                 }
             }
 
