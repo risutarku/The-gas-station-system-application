@@ -195,40 +195,6 @@ internal class Program
                 );
         }
     }
-    //public static bool IsAvailableStationsEmpty(List<Station> availableStations)
-    //{
-    //    bool empty = availableStations.Count == 0;
-    //    return empty;
-    //}
-
-    //public static Station PurchaseByChoosingFromTheFuelList(List<Station> gasStations, string chosenFuel1, int fuelAmount1, List<string> fuel) // процесс покупки через вывод списка топлива
-    //{
-    //    ShowFuelList(fuel);
-    //    string chosenFuel = GetFuelType(fuel);
-    //    int fuelAmount = GetFuelAmount();
-    //    List<Station> availableStations = GetAvailableStations(gasStations, chosenFuel, fuelAmount);
-
-    //    if (availableStations.Count == 0)
-    //    {
-    //        NoAvailableStationsMessage();
-    //        return null;
-    //    }
-    //    else
-    //    {
-    //        PrintStationsWithPrice(chosenFuel, fuelAmount, availableStations);
-    //        Station chosenStation = GetStation(availableStations);
-    //        return chosenStation;
-    //    }
-
-    //    static void NoAvailableStationsMessage()
-    //    {
-    //        Console.WriteLine(
-    //                "По вашим критериям не удалось найти подходящие заправки\n" +
-    //                "Попробуйуте указать другой тип или объем топлива"
-    //            );
-    //    }
-    //}
-
     public static (Station chosenStation, string chosenFuel, int fuelAmount) OrderByGasList(List<string> allGasList, List<Station> stationList)
     {
         while (true)
@@ -290,7 +256,6 @@ internal class Program
                 "Попробуйте снова");
         }
     }
-
     public static void PrintPreOrderCheque((Station chosenStation, string chosenFuel, int fuelAmount) purchaseInformation, Dictionary<int, int> discounts)
     {
         Station chosenStation = purchaseInformation.Item1;
@@ -347,7 +312,6 @@ internal class Program
             return discount;
         }
     }
-
     public static void foo(List<string> allGasList, List<Station> stationList, Dictionary<int, int> discounts)
     {
         while (true)
@@ -404,8 +368,6 @@ internal class Program
             }
         }
     }
-
-
     public static string ConfirmOrder()
     {
         string answer = GetAnswer();
@@ -431,7 +393,6 @@ internal class Program
             }
         }
     }
-
     public static string RestartOrder()
     {
         string answer = GetAnswer();
@@ -457,7 +418,6 @@ internal class Program
             }
         }
     }
-
     public static void ChangeStationData(List<Station> stations, string selectedStationName, string myFuelType, int fuelAmount)
     {
         Station localStation = new Station();
@@ -467,8 +427,6 @@ internal class Program
                 station.gasReserve[myFuelType] = station.gasReserve[myFuelType] - fuelAmount;
         }
     }
-
-
     public static string ChooseToPrintFuelOrStationList()
     {
         string answer = GetAnswer();
@@ -496,7 +454,6 @@ internal class Program
             }
         }
     }   
-
     public static void PrintStationList(List<Station> stationList)
     {
         int counter = 0;
@@ -504,7 +461,6 @@ internal class Program
             Console.WriteLine($"{station.name}");
         Console.WriteLine();
     }
-
     public static int CheckStationInStatlionList(List<Station> stationList, string selectedStationName)
     {
         foreach (Station station in stationList)
@@ -512,7 +468,6 @@ internal class Program
                 return 1;
         return 2;
     }
-
     public static Station GetGasStationByName(List<Station> stationList, string stationName)
     {
         Station tempStation = new Station();
@@ -521,7 +476,6 @@ internal class Program
                 tempStation = station;
         return tempStation;
     }
-
     public static Station GetGasStation(List<Station> stationList)
     {
         string selectedStationName;
@@ -552,7 +506,66 @@ internal class Program
         }
 
     }
+    public static void CreateCheck(
+            Station chosenStation, string myFuelType, int fuelAmount, Dictionary<int, int> discounts
+        )
+    {
+        string text = CreatePreOrderCheque(chosenStation, myFuelType, fuelAmount, discounts);
+        WriteCheque(text);
 
+        static string CreatePreOrderCheque(Station chosenStation, string chosenFuel, int fuelAmount, Dictionary<int, int> discounts)
+        {
+            int priceOfSelectedStation = chosenStation.gasPrice[chosenFuel];
+            int totalPrice = CountTotalPrice(priceOfSelectedStation, fuelAmount);
+            int discount = GetDiscount(discounts, fuelAmount);
+            double finalPriceWithDiscount = CountDiscountPrice(totalPrice, discount);
+            double discountAmount = CountDiscount(totalPrice, finalPriceWithDiscount);
+            string cheque = "";
+            cheque = string.Format($"Ваш заказ\n" +
+                $"АЗС: {chosenStation.name}, ул. {chosenStation.address}\n" +
+                $"{chosenFuel}   {chosenStation.gasPrice[chosenFuel]}р X {fuelAmount}л = {totalPrice}р\n" +
+                $"Скидка составила: {discountAmount}р ({discount}%)\n" +
+                $"Итого: {finalPriceWithDiscount}р");
+            return cheque;
+        }
+
+        static double CountDiscount(int totalPriceWithoutDiscount, double finalPriceWithDiscount)
+        {
+            return Math.Round((totalPriceWithoutDiscount - finalPriceWithDiscount), 2);
+        } //сумма скидки
+
+        static int CountTotalPrice(int priceOfSelectedFuelOnStation, int fuelAmount)
+        {
+            int totalPrice = priceOfSelectedFuelOnStation * fuelAmount;
+            return totalPrice;
+        } // сумма без скидки
+
+        static double CountDiscountPrice(int totalPrice, int discount)
+        {
+            double discountPrice = Convert.ToDouble(totalPrice) * (1 - (Convert.ToDouble(discount) / 100));
+            return discountPrice;
+        } // сумма со скидкой
+
+        static int GetDiscount(Dictionary<int, int> discounts, int fuelAmount)
+        {
+            int discount = 0;
+            foreach (KeyValuePair<int, int> kvp in discounts)
+            {
+                if (fuelAmount > kvp.Key)
+                    discount = kvp.Value;
+            }
+            return discount;
+        }
+
+        static void WriteCheque(string text)
+        {
+
+            using (StreamWriter SW = new StreamWriter("./Check.txt", false))
+            {
+                SW.WriteLine(text);
+            }
+        }
+    }
     private static void Main(string[] args)
     {
         if (args.Length == 0)
@@ -676,64 +689,4 @@ internal class Program
 
 
 
-    public static void CreateCheck(
-            Station chosenStation, string myFuelType, int fuelAmount, Dictionary<int, int> discounts
-        )
-    {
-        string text = CreatePreOrderCheque(chosenStation, myFuelType, fuelAmount, discounts);
-        WriteCheque(text);
-
-        static string CreatePreOrderCheque(Station chosenStation, string chosenFuel, int fuelAmount, Dictionary<int, int> discounts)
-        {
-            int priceOfSelectedStation = chosenStation.gasPrice[chosenFuel];
-            int totalPrice = CountTotalPrice(priceOfSelectedStation, fuelAmount);
-            int discount = GetDiscount(discounts, fuelAmount);
-            double finalPriceWithDiscount = CountDiscountPrice(totalPrice, discount);
-            double discountAmount = CountDiscount(totalPrice, finalPriceWithDiscount);
-            string cheque = "";
-            cheque = string.Format($"Ваш заказ\n" +
-                $"АЗС: {chosenStation.name}, ул. {chosenStation.address}\n" +
-                $"{chosenFuel}   {chosenStation.gasPrice[chosenFuel]}р X {fuelAmount}л = {totalPrice}р\n" +
-                $"Скидка составила: {discountAmount}р ({discount}%)\n" +
-                $"Итого: {finalPriceWithDiscount}р");
-            return cheque;
-        }
-
-        static double CountDiscount(int totalPriceWithoutDiscount, double finalPriceWithDiscount)
-        {
-            return Math.Round((totalPriceWithoutDiscount - finalPriceWithDiscount), 2);
-        } //сумма скидки
-
-        static int CountTotalPrice(int priceOfSelectedFuelOnStation, int fuelAmount)
-        {
-            int totalPrice = priceOfSelectedFuelOnStation * fuelAmount;
-            return totalPrice;
-        } // сумма без скидки
-
-        static double CountDiscountPrice(int totalPrice, int discount)
-        {
-            double discountPrice = Convert.ToDouble(totalPrice) * (1 - (Convert.ToDouble(discount) / 100));
-            return discountPrice;
-        } // сумма со скидкой
-
-        static int GetDiscount(Dictionary<int, int> discounts, int fuelAmount)
-        {
-            int discount = 0;
-            foreach (KeyValuePair<int, int> kvp in discounts)
-            {
-                if (fuelAmount > kvp.Key)
-                    discount = kvp.Value;
-            }
-            return discount;
-        }
-
-        static void WriteCheque(string text)
-        {
-
-            using (StreamWriter SW = new StreamWriter("./Check.txt", false))
-            {
-                SW.WriteLine(text);
-            }
-        }
-    }
 }
