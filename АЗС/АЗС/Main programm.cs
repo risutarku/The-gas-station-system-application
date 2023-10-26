@@ -10,7 +10,7 @@ using System.Reflection;
 
 internal class Program
 {
-    public static void ShowFuelList(List<string> fuel) //вывод списка топлива // done
+    private static void ShowFuelList(List<string> fuel) //вывод списка топлива // done
     {
         string fuelMenu = "";
         Console.WriteLine("Выберите тип топлива:\n");
@@ -25,7 +25,7 @@ internal class Program
         Console.WriteLine(fuelMenu);
         Console.WriteLine();
     }
-    public static string GetFuelType(List<string> fuel) // done 
+    private static string GetFuelType(List<string> fuel) // done 
     {
         string chosenFuel;
         while (true)
@@ -60,16 +60,31 @@ internal class Program
                 );
         }
     }
-    static string EnterFuelAmount()
+    
+    private static int GetFuelAmount() // ввод литров топлива // done
     {
-        Console.WriteLine("Введите объём топлива (в литрах)");
-        Console.Write("Ввод: ");
-        string fuelAmount = Console.ReadLine().Trim();
-        return fuelAmount;
-    }
-    public static int GetFuelAmount() // ввод литров топлива // done
-    {
-        
+        while (true)
+        {
+            string inputFuelAmount = EnterFuelAmount();
+            int fuelAmount = CheckCorrectInput(inputFuelAmount);
+
+            if (fuelAmount == 0)
+            {
+                IncorrectFuelAmountInpurErrorMessage();
+                continue;
+
+            }
+            else
+                return fuelAmount;
+        }
+
+        static string EnterFuelAmount()
+        {
+            Console.WriteLine("Введите объём топлива (в литрах)");
+            Console.Write("Ввод: ");
+            string fuelAmount = Console.ReadLine().Trim();
+            return fuelAmount;
+        }
 
         static int CheckCorrectInput(string inputFuelAmount)
         {
@@ -87,80 +102,10 @@ internal class Program
             Console.WriteLine("Некорректный ввод, введите целое положительное число");
         }
 
-        while (true)
-        {
-            string inputFuelAmount = EnterFuelAmount();
-            int fuelAmount = CheckCorrectInput(inputFuelAmount);
-
-            if (fuelAmount == 0)
-            {
-                IncorrectFuelAmountInpurErrorMessage();
-                continue;
-
-            }
-            else
-                return fuelAmount;
-        }
+        
     }
-    public static Station GetStation(List<Station> availableStations) // done 
-    {
-        string chosenStationName;
-        while (true)
-        {
-            chosenStationName = EnterStationName();
-
-            if (IsStationNameInStationList(availableStations, chosenStationName))
-            {
-                return FindStationByStationName(availableStations, chosenStationName);
-            }
-            else
-            {
-                IncorrectFuelInputErrorMessage();
-                continue;
-            }
-        }
-
-        static void IncorrectFuelInputErrorMessage()
-        {
-            Console.WriteLine();
-            Console.WriteLine(
-                    "Введенной станции нет в списке! \n" +
-                    "Попробуйте снова \n"
-                );
-        }
-
-        static string EnterStationName()
-        {
-            string chosenStationName;
-            Console.Write("Ввод: ");
-            chosenStationName = Console.ReadLine().ToUpper().Trim();
-
-            return chosenStationName;
-        }
-
-        static bool IsStationNameInStationList(List<Station> availableStations, string chosenStationName)
-        {
-            foreach (Station station in availableStations)
-            {
-                if (station.name.ToUpper() == chosenStationName)
-                    return true;
-            }
-            return false;
-        }
-
-        static Station FindStationByStationName(List<Station> availableStations, string chosenStationName)
-        {
-            Station tmpStation = new Station();
-            foreach (Station station in availableStations)
-            {
-                if (station.name.ToUpper() == chosenStationName)
-                    return station;
-            }
-            return null;
-        }
-
-    }
-    public static bool IsGasAvailable(string myFuelType, int fuelAmount, Station gasStation) // проверка станции на наличие данного количества и типа топлива // done
+   
+    private static bool IsGasAvailable(string myFuelType, int fuelAmount, Station gasStation) // проверка станции на наличие данного количества и типа топлива // done
     {
         bool availability = false;
         if (gasStation.gasPrice.ContainsKey(myFuelType))
@@ -173,7 +118,7 @@ internal class Program
         }
         return availability;
     }
-    public static List<Station>  GetAvailableStations(List<Station> gasStations, string myFuelType, int fuelAmount) // выбор подходящий станции их всего списка станций // done
+    private static List<Station>  GetAvailableStations(List<Station> gasStations, string myFuelType, int fuelAmount) // выбор подходящий станции их всего списка станций // done
     {
         List<Station> availableStations = new List<Station>();
         foreach (var station in gasStations)
@@ -185,7 +130,7 @@ internal class Program
         }
         return availableStations;
     }
-    public static void PrintStationsWithPrice(string myFuelType, int fuelAmount, List<Station> availableStations) // done
+    private static void PrintStationsWithPrice(string myFuelType, int fuelAmount, List<Station> availableStations) // done
     {
         Console.WriteLine($"Вот доступные заправки для ваших критериев: {myFuelType,5} {fuelAmount,5}л");
         foreach (Station station in availableStations)
@@ -195,7 +140,7 @@ internal class Program
                 );
         }
     }
-    public static (Station chosenStation, string chosenFuel, int fuelAmount) OrderByGasList(List<string> allGasList, List<Station> stationList)
+    private static (Station chosenStation, string chosenFuel, int fuelAmount) OrderByGasList(List<string> allGasList, List<Station> stationList)
     {
         while (true)
         {
@@ -223,9 +168,10 @@ internal class Program
             }
         }
     }
-    public static (Station chosenStation, string chosenFuel, int fuelAmount) OrderByStationList(List<Station> stationList)
+    private static (Station chosenStation, string chosenFuel, int fuelAmount) OrderByStationList(List<Station> stationList)
     {
-        Station chosenStation = GetGasStation(stationList);
+        PrintStationList(stationList);
+        Station chosenStation = GetStation(stationList);
         chosenStation.PrintInfo();
         string chosenFuel = GetFuelType(chosenStation.gas);
         int fuelAmount = GetFuelAmount();
@@ -256,7 +202,9 @@ internal class Program
                 "Попробуйте снова");
         }
     }
-    public static void PrintPreOrderCheque((Station chosenStation, string chosenFuel, int fuelAmount) purchaseInformation, Dictionary<int, int> discounts)
+    private static void PrintPreOrderCheque(
+            (Station chosenStation, string chosenFuel, int fuelAmount) purchaseInformation, 
+            Dictionary<int, int> discounts)
     {
         Station chosenStation = purchaseInformation.Item1;
         string chosenFuel = purchaseInformation.Item2;
@@ -283,24 +231,20 @@ internal class Program
                 $"Итого: {finalPriceWithDiscount}р";
             return cheque;
         }
-
         static double CountDiscount(int totalPriceWithoutDiscount, double finalPriceWithDiscount)
         {
             return Math.Round((totalPriceWithoutDiscount - finalPriceWithDiscount), 2);
         } //сумма скидки
-
         static int CountTotalPrice(int priceOfSelectedFuelOnStation, int fuelAmount) 
         {
             int totalPrice = priceOfSelectedFuelOnStation * fuelAmount;
             return totalPrice;
         } // сумма без скидки
-
         static double CountDiscountPrice(int totalPrice, int discount)
         {
             double discountPrice = Convert.ToDouble(totalPrice) * (1 - (Convert.ToDouble(discount) / 100));
             return discountPrice;
         } // сумма со скидкой
-
         static int GetDiscount(Dictionary<int, int> discounts, int fuelAmount)
         {
             int discount = 0;
@@ -312,63 +256,7 @@ internal class Program
             return discount;
         }
     }
-    public static void foo(List<string> allGasList, List<Station> stationList, Dictionary<int, int> discounts)
-    {
-        while (true)
-        {
-            if (ChooseToPrintFuelOrStationList() == "2")
-            {
-                (Station chosenStation, string chosenFuel, int fuelAmount) orderInfo = OrderByGasList(allGasList, stationList);
-                PrintPreOrderCheque(orderInfo, discounts);
-                if (ConfirmOrder() == "1")
-                {
-                    string path = @"D:\vitek\C#\Технология программирования\АЗС\чек.txt";
-                    Console.WriteLine("Ваш заказ готов!");
-                    if (RestartOrder() == "1")
-                        continue;
-                    else
-                    {
-                        ChangeStationData(stationList, orderInfo.Item1.name, orderInfo.Item2, orderInfo.Item3);
-                        CreateCheck(orderInfo.Item1, orderInfo.Item2, orderInfo.Item3, discounts);
-                        break;
-                    }
-                }
-                else
-                {
-                    if (RestartOrder() == "1")
-                        continue;
-                    else
-                        break;
-                }
-            }
-            else
-            {
-                (Station chosenStation, string chosenFuel, int fuelAmount) orderInfo = OrderByStationList(stationList);
-                PrintPreOrderCheque(orderInfo, discounts);
-                if (ConfirmOrder() == "1")
-                {
-                    string path = @"D:\vitek\C#\Технология программирования\АЗС\чек.txt";
-                    Console.WriteLine("Ваш заказ готов!");
-                    if (RestartOrder() == "1")
-                        continue;
-                    else
-                    {
-                        ChangeStationData(stationList, orderInfo.Item1.name, orderInfo.Item2, orderInfo.Item3);
-                        CreateCheck(orderInfo.Item1, orderInfo.Item2, orderInfo.Item3, discounts);
-                        break;
-                    }
-                }
-                else
-                {
-                    if (RestartOrder() == "1")
-                        continue;
-                    else
-                        break;
-                }
-            }
-        }
-    }
-    public static string ConfirmOrder()
+    private static string ConfirmOrder()
     {
         string answer = GetAnswer();
         return answer;
@@ -383,7 +271,12 @@ internal class Program
                     );
                 Console.Write("Ввод: ");
                 string answer = Console.ReadLine();
-                if (answer == "1" || answer == "2")
+                if (answer == "1")
+                {
+                    Console.WriteLine("Ваш заказ готов!");
+                    return answer;
+                }
+                else if (answer == "2")
                     return answer;
                 else
                 {
@@ -393,7 +286,7 @@ internal class Program
             }
         }
     }
-    public static string RestartOrder()
+    private static string RestartOrder()
     {
         string answer = GetAnswer();
         return answer;
@@ -418,7 +311,7 @@ internal class Program
             }
         }
     }
-    public static void ChangeStationData(List<Station> stations, string selectedStationName, string myFuelType, int fuelAmount)
+    private static void ChangeStationData(List<Station> stations, string selectedStationName, string myFuelType, int fuelAmount)
     {
         Station localStation = new Station();
         foreach (Station station in stations)
@@ -427,7 +320,7 @@ internal class Program
                 station.gasReserve[myFuelType] = station.gasReserve[myFuelType] - fuelAmount;
         }
     }
-    public static string ChooseToPrintFuelOrStationList()
+    private static string ChooseToPrintFuelOrStationList()
     {
         string answer = GetAnswer();
         return answer;
@@ -453,62 +346,195 @@ internal class Program
                 }
             }
         }
-    }   
-    public static void PrintStationList(List<Station> stationList)
+    }
+    private static void PrintStationList(List<Station> stationList)
     {
         int counter = 0;
         foreach (Station station in stationList)
             Console.WriteLine($"{station.name}");
         Console.WriteLine();
     }
-    public static int CheckStationInStatlionList(List<Station> stationList, string selectedStationName)
-    {
-        foreach (Station station in stationList)
-            if (station.name.ToUpper() == selectedStationName.ToUpper())
-                return 1;
-        return 2;
-    }
-    public static Station GetGasStationByName(List<Station> stationList, string stationName)
-    {
-        Station tempStation = new Station();
-        foreach (Station station in stationList)
-            if (station.name.ToUpper() == stationName)//найти станцию ?
-                tempStation = station;
-        return tempStation;
-    }
-    public static Station GetGasStation(List<Station> stationList)
-    {
-        string selectedStationName;
 
+    private static Station GetStation(List<Station> availableStations) 
+    {
+        string chosenStationName;
         while (true)
         {
-            PrintStationList(stationList);
-            selectedStationName = EnterStationName();
-            if (CheckStationInStatlionList(stationList, selectedStationName) == 1)
-                return GetGasStationByName(stationList, selectedStationName);
+            chosenStationName = EnterStationName();
+
+            if (IsStationNameInStationList(availableStations, chosenStationName))
+            {
+                return FindStationByStationName(availableStations, chosenStationName);
+            }
             else
-                ErrorMessage();
+            {
+                IncorrectFuelInputErrorMessage();
                 continue;
+            }
         }
 
-        static void ErrorMessage()
-        {
-            Console.WriteLine("Данной станции нет в списке, проверьте ввод и попробуйте снова");
-        }
-
+        
         static string EnterStationName()
         {
-            string selectedStationName;
-            Console.WriteLine("Выберите одну из станций выше ");
+            string chosenStationName;
             Console.Write("Ввод: ");
-            selectedStationName = Console.ReadLine().ToUpper().Trim();
-            return selectedStationName;
-        }
+            chosenStationName = Console.ReadLine().ToUpper().Trim();
 
+            return chosenStationName;
+        }
+        
+        static bool IsStationNameInStationList(List<Station> availableStations, string chosenStationName)
+        {
+            foreach (Station station in availableStations)
+            {
+                if (station.name.ToUpper() == chosenStationName)
+                    return true;
+            }
+            return false;
+        }
+        static Station FindStationByStationName(List<Station> availableStations, string chosenStationName)
+        {
+            Station tmpStation = new Station();
+            foreach (Station station in availableStations)
+            {
+                if (station.name.ToUpper() == chosenStationName)
+                    return station;
+            }
+            return null;
+        }
+        static void IncorrectFuelInputErrorMessage()
+        {
+            Console.WriteLine();
+            Console.WriteLine(
+                    "Введенной станции нет в списке! \n" +
+                    "Попробуйте снова \n"
+                );
+        }
     }
-    public static void CreateCheck(
-            Station chosenStation, string myFuelType, int fuelAmount, Dictionary<int, int> discounts
-        )
+    private static void BuyProcess(List<string> allGasList, List<Station> stationList, Dictionary<int, int> discounts) // todo
+    {
+        (Station chosenStation, string chosenFuel, int fuelAmount) orderInfo;
+        while (true)
+        {
+            if (ChooseToPrintFuelOrStationList() == "2")
+            {
+
+                orderInfo = OrderByGasList(allGasList, stationList);
+            }
+            else
+            {
+                orderInfo = OrderByStationList(stationList);
+
+            }
+            PrintPreOrderCheque(orderInfo, discounts);
+            if (ConfirmOrder() == "1")
+            {
+                if (RestartOrder() == "1")
+                    continue;
+                else
+                {
+                    ChangeStationData(stationList, orderInfo.Item1.name, orderInfo.Item2, orderInfo.Item3);
+                    CreateCheck(orderInfo.Item1, orderInfo.Item2, orderInfo.Item3, discounts);
+                    break;
+                }
+            }
+            else
+            {
+                if (RestartOrder() == "1")
+                    continue;
+                else
+                    break;
+            }
+           
+        }
+    }
+    private static void PrintWelcomeMessage()
+    {
+        Console.WriteLine("Добро пожаловать в Гортопливо!");
+        Console.WriteLine();
+        Console.WriteLine("В данной системе вы можете оформить заказ топлива в одной из АЗС города!");
+        Console.WriteLine();
+    }
+    private static (List<string>, Dictionary<int, int>) ReadGasInfo(string[] allGasTypesTextFile)
+    {
+        int counterGasTypes = 0;
+        List<string> allGasList = new List<string>();
+        Dictionary<int, int> discounts = new Dictionary<int, int>();
+
+        for (int i = 0; i < allGasTypesTextFile.Length; i++)
+        {
+            if (allGasTypesTextFile[i] == "")
+            {
+                counterGasTypes++;
+                continue;
+            }
+            else if (counterGasTypes == 0)
+            {
+                string[] tempAllGasTypes = allGasTypesTextFile[i].Split(";");
+                for (int j = 0; j < tempAllGasTypes.Length; j++)
+                    allGasList.Add(tempAllGasTypes[j]);
+            }
+            else if (counterGasTypes == 1)
+            {
+                string[] tempDiscount = allGasTypesTextFile[i].Split(";");
+                discounts.Add(Convert.ToInt32(tempDiscount[0]), Convert.ToInt32(tempDiscount[1]));
+            }
+        }
+        return (allGasList, discounts);
+    }
+    private static List<Station> ReadStationsInfo(string[] TextFile)
+    {
+        int counter = 0;
+        string[] nameAddress = new string[] { };
+        List<string> localStationGasList = new List<string>();
+        Dictionary<string, int> gasPrice = new Dictionary<string, int>();
+        Dictionary<string, int> gasAmount = new Dictionary<string, int>();
+        List<Station> stationList = new List<Station>();
+
+        for (int i = 0; i < TextFile.Length; i++)
+        {
+            if (TextFile[i] != "-|-")
+            {
+                if (TextFile[i] == "")
+                {
+                    counter++;
+                    continue;
+                }
+                else if (counter == 0)
+                {
+                    nameAddress = TextFile[i].Split(";");
+                }
+                else if (counter == 1)
+                {
+                    string[] gas = TextFile[i].Split(";");
+                    for (int j = 0; j < gas.Length; j++)
+                        localStationGasList.Add(gas[j]);
+
+                }
+                else if (counter == 2)
+                {
+                    string[] tempFuelPrice = TextFile[i].Split(";");
+                    gasPrice.Add(tempFuelPrice[0], Convert.ToInt32(tempFuelPrice[1]));
+                }
+                else if (counter == 3)
+                {
+                    string[] tempFuelAmount = TextFile[i].Split(";");
+                    gasAmount.Add(tempFuelAmount[0], Convert.ToInt32(tempFuelAmount[1]));
+                }
+            }
+            else
+            {
+                counter = 0;
+                stationList.Add(Station.Create(nameAddress, localStationGasList, gasPrice, gasAmount));
+                nameAddress = new string[] { };
+                localStationGasList = new List<string>();
+                gasPrice = new Dictionary<string, int>();
+                gasAmount = new Dictionary<string, int>();
+            }
+        }
+        return stationList;
+    }
+    public static void CreateCheck(Station chosenStation, string myFuelType, int fuelAmount, Dictionary<int, int> discounts)
     {
         string text = CreatePreOrderCheque(chosenStation, myFuelType, fuelAmount, discounts);
         WriteCheque(text);
@@ -528,24 +554,20 @@ internal class Program
                 $"Итого: {finalPriceWithDiscount}р");
             return cheque;
         }
-
         static double CountDiscount(int totalPriceWithoutDiscount, double finalPriceWithDiscount)
         {
             return Math.Round((totalPriceWithoutDiscount - finalPriceWithDiscount), 2);
         } //сумма скидки
-
         static int CountTotalPrice(int priceOfSelectedFuelOnStation, int fuelAmount)
         {
             int totalPrice = priceOfSelectedFuelOnStation * fuelAmount;
             return totalPrice;
         } // сумма без скидки
-
         static double CountDiscountPrice(int totalPrice, int discount)
         {
             double discountPrice = Convert.ToDouble(totalPrice) * (1 - (Convert.ToDouble(discount) / 100));
             return discountPrice;
         } // сумма со скидкой
-
         static int GetDiscount(Dictionary<int, int> discounts, int fuelAmount)
         {
             int discount = 0;
@@ -556,10 +578,8 @@ internal class Program
             }
             return discount;
         }
-
         static void WriteCheque(string text)
-        {
-
+        { 
             using (StreamWriter SW = new StreamWriter("./Check.txt", false))
             {
                 SW.WriteLine(text);
@@ -587,104 +607,13 @@ internal class Program
             Console.WriteLine("\nФайла с таким именем не существует");
             return;
         }
+        
         string[] allGasTypesTextFile = File.ReadAllLines(gasTypesFilePath);
         string[] TextFile = File.ReadAllLines(stationsFilePath);
-
         (List<string> allGasList, Dictionary<int, int> discounts) allGasTypesAndDiscounts = ReadGasInfo(allGasTypesTextFile);
-
         List<Station> stationList = ReadStationsInfo(TextFile);
-
-        static (List<string>, Dictionary<int, int> ) ReadGasInfo(string[] allGasTypesTextFile)
-        {
-            int counterGasTypes = 0;
-            List<string> allGasList = new List<string>();
-            Dictionary<int, int> discounts = new Dictionary<int, int>();
-
-            for (int i = 0; i < allGasTypesTextFile.Length; i++)
-            {
-                if (allGasTypesTextFile[i] == "")
-                {
-                    counterGasTypes++;
-                    continue;
-                }
-                else if (counterGasTypes == 0)
-                {
-                    string[] tempAllGasTypes = allGasTypesTextFile[i].Split(";");
-                    for (int j = 0; j < tempAllGasTypes.Length; j++)
-                        allGasList.Add(tempAllGasTypes[j]);
-                }
-                else if (counterGasTypes == 1)
-                {
-                    string[] tempDiscount = allGasTypesTextFile[i].Split(";");
-                    discounts.Add(Convert.ToInt32(tempDiscount[0]), Convert.ToInt32(tempDiscount[1]));
-                }
-            }
-            return (allGasList, discounts);
-        }
-
-        static List<Station> ReadStationsInfo(string[] TextFile)
-        {
-            int counter = 0;
-            string[] nameAddress = new string[] { };
-            List<string> localStationGasList = new List<string>();
-            Dictionary<string, int> gasPrice = new Dictionary<string, int>();
-            Dictionary<string, int> gasAmount = new Dictionary<string, int>();
-            List<Station> stationList = new List<Station>();
-
-            for (int i = 0; i < TextFile.Length; i++)
-            {
-                if (TextFile[i] != "-|-")
-                {
-                    if (TextFile[i] == "")
-                    {
-                        counter++;
-                        continue;
-                    }
-                    else if (counter == 0)
-                    {
-                        nameAddress = TextFile[i].Split(";");
-                    }
-                    else if (counter == 1)
-                    {
-                        string[] gas = TextFile[i].Split(";");
-                        for (int j = 0; j < gas.Length; j++)
-                            localStationGasList.Add(gas[j]);
-
-                    }
-                    else if (counter == 2)
-                    {
-                        string[] tempFuelPrice = TextFile[i].Split(";");
-                        gasPrice.Add(tempFuelPrice[0], Convert.ToInt32(tempFuelPrice[1]));
-                    }
-                    else if (counter == 3)
-                    {
-                        string[] tempFuelAmount = TextFile[i].Split(";");
-                        gasAmount.Add(tempFuelAmount[0], Convert.ToInt32(tempFuelAmount[1]));
-                    }
-                }
-                else
-                {
-                    counter = 0;
-                    stationList.Add(Station.Create(nameAddress, localStationGasList, gasPrice, gasAmount));
-                    nameAddress = new string[] { };
-                    localStationGasList = new List<string>();
-                    gasPrice = new Dictionary<string, int>();
-                    gasAmount = new Dictionary<string, int>();
-                }
-            }
-            return stationList;
-        }
-
-        static void PrintWelcomeMessage()
-        {
-            Console.WriteLine("Добро пожаловать в Гортопливо!");
-            Console.WriteLine();
-            Console.WriteLine("В данной системе вы можете оформить заказ топлива в одной из АЗС города!");
-            Console.WriteLine();
-        }
-
         PrintWelcomeMessage();
-        foo(allGasTypesAndDiscounts.Item1, stationList, allGasTypesAndDiscounts.Item2);
+        BuyProcess(allGasTypesAndDiscounts.Item1, stationList, allGasTypesAndDiscounts.Item2);
     }
 
 
