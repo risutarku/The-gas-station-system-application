@@ -35,7 +35,7 @@ internal class Program
 
             if (!(fuel.Contains(chosenFuel)))
             {
-                IncorrectFuelInputErrorMessage();
+                InfoMessage.IncorrectFuelInputErrorMessage();
                 continue;
             }
             else
@@ -51,14 +51,6 @@ internal class Program
             return chosenFuel;
         }
 
-        static void IncorrectFuelInputErrorMessage()
-        {
-            Console.WriteLine();
-            Console.WriteLine(
-                    "Выбранного типа топлива нет в списке! \n" +
-                    "Попробуйте снова \n"
-                );
-        }
     }
     
     private static int GetFuelAmount() // ввод литров топлива // done
