@@ -16,21 +16,21 @@ internal class Program
     {
         if (args.Length == 0)
         {
-            Console.WriteLine("\nФайла с таким именем не существует или файл заполнен некорректно");
+            InfoMessage.FileNotExistsMessage();
             return;
         }
 
         string stationsFilePath = args[0];
         if (!File.Exists(stationsFilePath))
         {
-            Console.WriteLine("\nФайла с таким именем не существует");
+            InfoMessage.FileNameNotExistsMessage();
             return;
         }
 
         string gasTypesFilePath = args[1];
         if (!File.Exists(gasTypesFilePath))
         {
-            Console.WriteLine("\nФайла с таким именем не существует");
+            InfoMessage.FileNameNotExistsMessage();
             return;
         }
         

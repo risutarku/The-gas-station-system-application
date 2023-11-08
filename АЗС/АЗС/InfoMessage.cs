@@ -49,5 +49,13 @@ namespace АЗС
                 "Столько топлива нет на станции" +
                 "Попробуйте снова");
         }
+        public static void FileNotExistsMessage()
+        {
+            Console.WriteLine("\nФайла с таким именем не существует или файл заполнен некорректно");
+        }
+        public static void FileNameNotExistsMessage()
+        {
+            Console.WriteLine("\nФайла с таким именем не существует");
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace АЗС
         }
         public static void CreateCheque(Station chosenStation, string myFuelType, int fuelAmount, Dictionary<int, int> discounts)
         {
-            string text = NoIdea.CreatePreOrderCheque(chosenStation, myFuelType, fuelAmount, discounts);
+            string text = CreatePreOrderCheque(chosenStation, myFuelType, fuelAmount, discounts);
             FileWork.WriteCheque(text);
         }
     }
