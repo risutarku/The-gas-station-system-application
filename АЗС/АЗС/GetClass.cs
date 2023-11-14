@@ -27,7 +27,6 @@ namespace АЗС
 
 
         }
-
         public static int GetFuelAmount() // ввод литров топлива // done
         {
             while (true)

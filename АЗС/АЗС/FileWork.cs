@@ -85,7 +85,8 @@ namespace АЗС
                 else
                 {
                     counter = 0;
-                    stationList.Add(Station.Create(nameAddress, localStationGasList, gasPrice, gasAmount));
+                    stationList.Add(new Station(nameAddress, localStationGasList, gasPrice, gasAmount));
+                    //stationList.Add(Station.Create(nameAddress, localStationGasList, gasPrice, gasAmount));
                     nameAddress = new string[] { };
                     localStationGasList = new List<string>();
                     gasPrice = new Dictionary<string, int>();

@@ -48,7 +48,7 @@ namespace АЗС
             Print.PrintStationList(stationList);
             Station chosenStation = GetClass.GetStation(stationList);
             chosenStation.PrintInfo();
-            string chosenFuel = GetClass.GetFuelType(chosenStation.gas);
+            string chosenFuel = GetClass.GetFuelType(chosenStation.Gas);
             int fuelAmount = GetClass.GetFuelAmount();
 
             while (true)
@@ -59,7 +59,9 @@ namespace АЗС
                     fuelAmount = GetClass.GetFuelAmount();
                 }
                 else
+                {
                     return (chosenStation, chosenFuel, fuelAmount);
+                } 
             }
 
         }
@@ -85,7 +87,7 @@ namespace АЗС
                         continue;
                     else
                     {
-                        ChangeData.ChangeStationData(stationList, orderInfo.Item1.name, orderInfo.Item2, orderInfo.Item3);
+                        ChangeData.ChangeStationData(stationList, orderInfo.Item1.Name, orderInfo.Item2, orderInfo.Item3);
                         NoIdea.CreateCheque(orderInfo.Item1, orderInfo.Item2, orderInfo.Item3, discounts);
                         break;
                     }

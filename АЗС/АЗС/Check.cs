@@ -21,9 +21,9 @@ namespace АЗС
         public static bool IsGasAvailable(string myFuelType, int fuelAmount, Station gasStation) // проверка станции на наличие данного количества и типа топлива // done
         {
             bool availability = false;
-            if (gasStation.gasPrice.ContainsKey(myFuelType))
+            if (gasStation.GasPrice.ContainsKey(myFuelType))
             {
-                int localFuelAmount = gasStation.gasReserve[myFuelType];
+                int localFuelAmount = gasStation.GasReserve[myFuelType];
                 if (localFuelAmount >= fuelAmount)
                 {
                     availability = true;
@@ -35,7 +35,7 @@ namespace АЗС
         {
             foreach (Station station in availableStations)
             {
-                if (station.name.ToUpper() == chosenStationName)
+                if (station.Name.ToUpper() == chosenStationName)
                     return true;
             }
             return false;
@@ -45,14 +45,15 @@ namespace АЗС
             Station tmpStation = new Station();
             foreach (Station station in availableStations)
             {
-                if (station.name.ToUpper() == chosenStationName)
+                if (station.Name.ToUpper() == chosenStationName)
                     return station;
             }
+
             return null;
         }
         public static bool IsFuelAmountAvailableOnSelectedStationAndFuelType(Station chosenStation, string chosenFuel, int fuelAmount)
         {
-            if (chosenStation.gasReserve[chosenFuel] < fuelAmount)
+            if (chosenStation.GasReserve[chosenFuel] < fuelAmount)
                 return false;
             else
                 return true;

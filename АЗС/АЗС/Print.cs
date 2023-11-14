@@ -36,7 +36,7 @@ namespace АЗС
         public static void PrintStationList(List<Station> stationList)
         {
             foreach (Station station in stationList)
-                Console.WriteLine($"{station.name}");
+                Console.WriteLine($"{station.Name}");
             Console.WriteLine();
         }
         public static void PrintPreOrderCheque(
@@ -46,7 +46,7 @@ namespace АЗС
             Station chosenStation = purchaseInformation.Item1;
             string chosenFuel = purchaseInformation.Item2;
             int fuelAmount = purchaseInformation.Item3;
-            int priceOfSelectedStation = chosenStation.gasPrice[chosenFuel];
+            int priceOfSelectedStation = chosenStation.GasPrice[chosenFuel];
             int totalPrice = Calculations.CountTotalPrice(priceOfSelectedStation, fuelAmount);
             int discount = GetClass.GetDiscount(discounts, fuelAmount);
             double finalPriceWithDiscount = Calculations.CountDiscountPrice(totalPrice, discount); // итоговая сумма со скидкой скидки

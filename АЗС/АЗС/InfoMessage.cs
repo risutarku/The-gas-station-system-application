@@ -57,5 +57,43 @@ namespace АЗС
         {
             Console.WriteLine("\nФайла с таким именем не существует");
         }
+        public static void IncorrectInputMessage()
+        {
+            Console.WriteLine("Неверный ввод, попробуйте снова!");
+        }
+        public static void AskConfirmOrderMessage()
+        {
+            Console.WriteLine(
+                    "Вы подтверждаете ваш заказ?\n" +
+                    "1-Да 2-Нет"
+                );
+        }
+        public static void AskRestartOrderMessage()
+        {
+            Console.WriteLine(
+                    "Вы желаете оформить заказ заново?\n" +
+                    "1-Да 2-Выйти из приложения"
+                );
+        }
+        public static void ChooseToPrintStationOrGasList()
+        {
+            Console.WriteLine(
+                "Выберите из списка станций или из списка топлива\n" +
+                "1-показать список станций 2-показать список топлива"
+            );
+        }
+        public static void InputMessage()
+        {
+            Console.Write("Ввод: ");
+        }
+        public static void DoneOrderMessage()
+        { 
+            Console.WriteLine("Ваш заказ готов!");
+        }
+        public static void InputFuelAmountMessage()
+        {
+            Console.WriteLine("Введите объём топлива (в литрах)");
+        }
+
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,22 +11,13 @@ namespace АЗС
 {
     internal class Station
     {
-        /* Создать класс для заправок, которые будут хранить всю информацию о себе 
-         * Название
-         * Адресс 
-         * Виды топлива 
-         * Запасы топлива
-         * Цена топлива
-         * 
-         * To do: бензоколонки (отдельный класс)
-         */ 
+        private string name;
+        private string address;
+        private List<string> gas = new List<string>();
+        private Dictionary<string, int> gasPrice = new Dictionary<string, int>();
+        private Dictionary<string, int> gasReserve = new Dictionary<string, int>();
 
-        public string name;
-        public string address;
-        public List<string> gas = new List<string>();
-        public Dictionary<string, int> gasPrice = new Dictionary<string, int>();
-        public Dictionary<string, int> gasReserve = new Dictionary<string, int>();
-
+        /*
         public static Station Create
             (
                 string[] stationNameAddress, List<string> gasList,
@@ -39,14 +32,46 @@ namespace АЗС
                 GasPrice = gasPrice,
                 GasReserve = gasAmount
             };
+        }*/
+
+        public Order MakeOrder(Fuel chosenFeul, int fuelAmount)
+        {
+            return new Order(this,chosenFeul, fuelAmount);
+        }
+
+        public Station(
+                string[] stationNameAddress, List<string> gasList,
+                Dictionary<string, int> gasPrice, Dictionary<string, int> gasAmount)
+        {
+            Name = stationNameAddress[0];
+            Address = stationNameAddress[1];
+            Gas = gasList;
+            GasPrice = gasPrice;
+            GasReserve = gasAmount;
         }
 
         public Station()
         {
-            name = "неизвестно";
-            address = "неизвестно";
+
         }
 
+        public int ChooseFuelAmount(Fuel chosenFuel)
+        {
+            while (true)
+            {
+                string inputFuelAmount = EnterInfo.EnterFuelAmount();
+                int fuelAmount = Check.CheckCorrectInput(inputFuelAmount);
+
+                if (fuelAmount == 0)
+                {
+                    InfoMessage.IncorrectFuelAmountInpurErrorMessage();
+                    continue;
+
+                }
+                else
+                    return fuelAmount;
+            }
+        }
         public string Name
         { 
             get { return name; } set { name = value; }
@@ -71,23 +96,6 @@ namespace АЗС
         {
             get { return gasReserve; }
             set { gasReserve = value; }
-        }
-
-        /*
-        public void PrintStation()
-        {
-            Console.WriteLine(
-                    "Название: {0,10}   Адрес: {1,10}", name, address
-                );
-        }
-        */
-
-        public void PrintAvailableGasOnStation()
-        {
-            foreach (var gas in gasReserve)
-                Console.Write(
-                        $"{gas.Key} "
-                    );
         }
 
         public void PrintInfo()

@@ -11,22 +11,22 @@ namespace АЗС
         public static string EnterFuelType()
         {
             string chosenFuel;
-            Console.Write("Ввод: ");
+            InfoMessage.InputMessage();
             chosenFuel = Console.ReadLine().ToUpper().Trim();
 
             return chosenFuel;
         }
         public static string EnterFuelAmount()
         {
-            Console.WriteLine("Введите объём топлива (в литрах)");
-            Console.Write("Ввод: ");
+            InfoMessage.InputFuelAmountMessage();
+            InfoMessage.InputMessage();
             string fuelAmount = Console.ReadLine().Trim();
             return fuelAmount;
         }
         public static string EnterStationName()
         {
             string chosenStationName;
-            Console.Write("Ввод: ");
+            InfoMessage.InputMessage();
             chosenStationName = Console.ReadLine().ToUpper().Trim();
 
             return chosenStationName;
@@ -35,22 +35,19 @@ namespace АЗС
         {
             while (true)
             {
-                Console.WriteLine(
-                        "Вы подтверждаете ваш заказ?\n" +
-                        "1-Да 2-Нет"
-                    );
-                Console.Write("Ввод: ");
+                InfoMessage.AskConfirmOrderMessage();
+                InfoMessage.InputMessage();
                 string answer = Console.ReadLine();
                 if (answer == "1")
                 {
-                    Console.WriteLine("Ваш заказ готов!");
+                    InfoMessage.DoneOrderMessage();
                     return answer;
                 }
                 else if (answer == "2")
                     return answer;
                 else
                 {
-                    Console.WriteLine("Неверный ввод, попробуйте снова!");
+                    InfoMessage.IncorrectInputMessage();
                     continue;
                 }
             }
@@ -59,17 +56,14 @@ namespace АЗС
         {
             while (true)
             {
-                Console.WriteLine(
-                        "Вы желаете оформить заказ заново?\n" +
-                        "1-Да 2-Выйти из приложения"
-                    );
-                Console.Write("Ввод: ");
+                InfoMessage.AskRestartOrderMessage();
+                InfoMessage.InputMessage();
                 string answer = Console.ReadLine();
                 if (answer == "1" || answer == "2")
                     return answer;
                 else
                 {
-                    Console.WriteLine("Неверный ввод, попробуйте снова!");
+                    InfoMessage.IncorrectInputMessage();
                     continue;
                 }
             }
@@ -78,11 +72,8 @@ namespace АЗС
         {
             while (true)
             {
-                Console.WriteLine(
-                    "Выберите из списка станций или из списка топлива\n" +
-                    "1-показать список станций 2-показать список топлива"
-                );
-                Console.Write("Ввод: ");
+                InfoMessage.ChooseToPrintStationOrGasList();
+                InfoMessage.InputMessage();
 
                 string answer = Console.ReadLine();
 
@@ -90,7 +81,7 @@ namespace АЗС
                     return answer;
                 else
                 {
-                    Console.WriteLine("Неправильный ввод попробуйте снова");
+                    InfoMessage.IncorrectInputMessage();
                     continue;
                 }
             }

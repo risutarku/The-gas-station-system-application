@@ -10,15 +10,15 @@ namespace АЗС
     {
         public static string CreatePreOrderCheque(Station chosenStation, string chosenFuel, int fuelAmount, Dictionary<int, int> discounts)
         {
-            int priceOfSelectedStation = chosenStation.gasPrice[chosenFuel];
+            int priceOfSelectedStation = chosenStation.GasPrice[chosenFuel];
             int totalPrice = Calculations.CountTotalPrice(priceOfSelectedStation, fuelAmount);
             int discount = GetClass.GetDiscount(discounts, fuelAmount);
             double finalPriceWithDiscount = Calculations.CountDiscountPrice(totalPrice, discount);
             double discountAmount = Calculations.CountDiscount(totalPrice, finalPriceWithDiscount);
             string cheque = "";
             cheque += $"Ваш заказ\n" +
-                $"АЗС: {chosenStation.name}, ул. {chosenStation.address}\n" +
-                $"{chosenFuel}   {chosenStation.gasPrice[chosenFuel]}р X {fuelAmount}л = {totalPrice}р\n" +
+                $"АЗС: {chosenStation.Name}, ул. {chosenStation.Address}\n" +
+                $"{chosenFuel}   {chosenStation.GasPrice[chosenFuel]}р X {fuelAmount}л = {totalPrice}р\n" +
                 $"Скидка составила: {discountAmount}р ({discount}%)\n" +
                 $"Итого: {finalPriceWithDiscount}р";
             return cheque;
