@@ -3,27 +3,54 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace АЗС
 {
     internal class Cheque
     {
-        private Fuel chosenFuel;
+        private CurrentFuel chosenFuel;
         private Station chosenStation;
         private int fuelAmount;
         private int purchaseAmount;
+        private string chequeString = "";
         //private int discount;
         //private double discountSize;
         //private double purchaseAmountWithDiscount;
 
-        public Cheque(Fuel chosenFuel, Station chosenStation, int fuelAmount)
+        public Cheque(string chequeString)
         {
-            ChosenFuel = chosenFuel;
-            ChosenStation = chosenStation;
-            FuelAmount = fuelAmount;
-            PurchaseAmount = Calculations.CountTotalPrice(chosenStation.GasPrice[chosenFuel.FuelTypeName], fuelAmount);
+            ChequeString = chequeString;
         }
-        public Fuel ChosenFuel
+
+        public void PrintCheque()
+        {
+            Console.WriteLine(ChequeString);
+        }
+
+        public void WriteCheque()
+        {
+            using (StreamWriter SW = new StreamWriter("./Check.txt", false))
+            {
+                SW.WriteLine(ChequeString);
+            }
+        }
+
+        public Cheque(Order myOrder)
+        {
+            ChosenFuel = myOrder.ChosenFuel;
+            ChosenStation = myOrder.ChosenStation;
+            FuelAmount = myOrder.FuelAmount;
+            PurchaseAmount = Calculations.CountTotalPrice(ChosenStation.GasPrice[ChosenFuel.FuelTypeName], FuelAmount);
+        }
+
+        public string ChequeString
+        {
+            get { return chequeString; }
+            set { chequeString = value; }
+        }
+
+        public CurrentFuel ChosenFuel
         {
             get { return chosenFuel; }
             set { chosenFuel = value; }

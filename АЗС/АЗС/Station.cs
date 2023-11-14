@@ -34,14 +34,15 @@ namespace АЗС
             };
         }*/
 
-        public Order MakeOrder(Fuel chosenFeul, int fuelAmount)
+        public Order MakeOrder(CurrentFuel chosenFeul, int fuelAmount, Discount discount)
         {
-            return new Order(this,chosenFeul, fuelAmount);
+            return new Order(this ,chosenFeul, fuelAmount, discount);
         }
 
         public Station(
                 string[] stationNameAddress, List<string> gasList,
-                Dictionary<string, int> gasPrice, Dictionary<string, int> gasAmount)
+                Dictionary<string, int> gasPrice, Dictionary<string, int> gasAmount
+            )
         {
             Name = stationNameAddress[0];
             Address = stationNameAddress[1];
@@ -55,7 +56,38 @@ namespace АЗС
 
         }
 
-        public int ChooseFuelAmount(Fuel chosenFuel)
+        /*
+        public static int GetDiscountSize(NetworkStation network, int fuelAmount)
+        {
+            int discountSize = 0;
+            foreach (KeyValuePair<int, int> kvp in network.Discounts)
+            {
+                if (fuelAmount > kvp.Key)
+                    discountSize = kvp.Value;
+            }
+            return discountSize;
+        }
+        */
+
+        public  CurrentFuel SelectFuel()
+        {
+            string chosenFuel;
+            while (true)
+            {
+                Print.ShowFuelList(Gas);
+                chosenFuel = EnterInfo.EnterFuelType();
+
+                if (!(Gas.Contains(chosenFuel)))
+                {
+                    InfoMessage.IncorrectFuelInputErrorMessage();
+                    continue;
+                }
+                else
+                    return new CurrentFuel(chosenFuel);
+            }
+        }
+
+        public int ChooseFuelAmount(CurrentFuel chosenFuel)
         {
             while (true)
             {
@@ -72,24 +104,29 @@ namespace АЗС
                     return fuelAmount;
             }
         }
+
         public string Name
         { 
-            get { return name; } set { name = value; }
+            get { return name; } 
+            set { name = value; }
         }
 
         public string Address
         {
-            get { return address; } set { address = value; }
+            get { return address; } 
+            set { address = value; }
         }
         
         public List<string> Gas
         {
-            get { return gas; } set { gas = value; }
+            get { return gas; } 
+            set { gas = value; }
         }
 
         public Dictionary<string, int> GasPrice
         {
-            get { return gasPrice; } set { gasPrice = value; }
+            get { return gasPrice; } 
+            set { gasPrice = value; }
         }
 
         public Dictionary<string, int> GasReserve

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace АЗС
 {
-    internal class NetworkStations
+    internal class NetworkStation
     {
         private List<Station> stations = new List<Station>();
         private Dictionary<int, int> discounts = new Dictionary<int, int>();
 
-        public NetworkStations(List<Station> stations, Dictionary<int, int> discounts) 
+        public NetworkStation(List<Station> stations, Dictionary<int, int> discounts) 
         {
             Stations = stations;
             Discounts = discounts;
@@ -27,7 +27,18 @@ namespace АЗС
             get { return discounts; }
             set { discounts = value; }
         }
-        
+
+        public Discount GetDiscountSize(int fuelAmount)
+        {
+            int discountSize = 0;
+            foreach (KeyValuePair<int, int> kvp in Discounts)
+            {
+                if (fuelAmount > kvp.Key)
+                    discountSize = kvp.Value;
+            }
+            return new Discount(discountSize);
+        }
+
         public  Station SelectStation()
         {
             string chosenStationName;

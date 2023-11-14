@@ -8,6 +8,7 @@ namespace АЗС
 {
     internal class SomeProcess
     {
+
         public static string ChooseToPrintFuelOrStationList()
         {
             string answer = EnterInfo.EnterChooseToPrintFuelOrStationListAnswer();

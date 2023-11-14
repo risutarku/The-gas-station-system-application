@@ -95,5 +95,10 @@ namespace АЗС
             }
             return stationList;
         }
+
+        public static NetworkStation MakeStationsNetwork(List<Station> stations, Dictionary<int, int> discounts)
+        {
+            return new NetworkStation(stations, discounts);
+        }
     }
 }

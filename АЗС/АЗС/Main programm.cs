@@ -33,17 +33,29 @@ internal class Program
             InfoMessage.FileNameNotExistsMessage();
             return;
         }
-
         //экземпляр класса?
         string[] allGasTypesTextFile = File.ReadAllLines(gasTypesFilePath);
         //экземпляр класса?
         string[] TextFile = File.ReadAllLines(stationsFilePath);
         //экземпляр класса?
+        /*
         (List<string> allGasList, Dictionary<int, int> discounts) allGasTypesAndDiscounts = FileWork.ReadGasInfo(allGasTypesTextFile);
         //экземпляр класса?
         List<Station> stationList = FileWork.ReadStationsInfo(TextFile);
         InfoMessage.PrintWelcomeMessage();
         SomeProcess.BuyProcess(allGasTypesAndDiscounts.Item1, stationList, allGasTypesAndDiscounts.Item2);
+        */
+        
+        NetworkStation net = FileWork.MakeStationsNetwork(FileWork.ReadStationsInfo(TextFile), FileWork.ReadGasInfo(allGasTypesTextFile).Item2);
+        Station chosenStation = net.SelectStation();
+        CurrentFuel chosenFuel = chosenStation.SelectFuel();
+        int fuelAmount = chosenStation.ChooseFuelAmount(chosenFuel);
+        Discount discount = net.GetDiscountSize(fuelAmount);
+        Order myOrder = chosenStation.MakeOrder(chosenFuel, fuelAmount, discount);
+        Cheque myCheque = myOrder.CreateCheque();
+        myCheque.PrintCheque();
+        myCheque.WriteCheque();
+
     }
 
 

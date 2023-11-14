@@ -13,8 +13,8 @@ namespace АЗС
             Station localStation = new Station();
             foreach (Station station in stations)
             {
-                if (station.name == selectedStationName)
-                    station.gasReserve[myFuelType] = station.gasReserve[myFuelType] - fuelAmount;
+                if (station.Name == selectedStationName)
+                    station.GasReserve[myFuelType] = station.GasReserve[myFuelType] - fuelAmount;
             }
         }
     }
