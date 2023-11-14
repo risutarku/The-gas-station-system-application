@@ -21,6 +21,10 @@ namespace АЗС
             FuelAmount = fuelAmount;
             DiscountSize = discount.DiscountSize;
         }
+        public Order()
+        {
+
+        }
 
         public Cheque CreateCheque()
         {
