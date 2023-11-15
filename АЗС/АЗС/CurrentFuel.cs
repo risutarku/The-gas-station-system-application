@@ -9,8 +9,6 @@ namespace АЗС
     internal class CurrentFuel
     {
         private string fuelTypeName;
-        private int fuelAmount;
-        private int fuelPrice;
 
         public CurrentFuel(string fuelTypeName)
         {
