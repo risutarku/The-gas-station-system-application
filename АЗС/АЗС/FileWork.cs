@@ -8,11 +8,13 @@ namespace АЗС
 {
     internal class FileWork
     {
-        public static void WriteCheque(string text)
+        public static void ChangeStationData(List<Station> stations, string selectedStationName, string myFuelType, int fuelAmount)
         {
-            using (StreamWriter SW = new StreamWriter("./Check.txt", false))
+            Station localStation = new Station();
+            foreach (Station station in stations)
             {
-                SW.WriteLine(text);
+                if (station.Name == selectedStationName)
+                    station.GasReserve[myFuelType] = station.GasReserve[myFuelType] - fuelAmount;
             }
         }
         public static (List<string>, Dictionary<int, int>) ReadGasInfo(string[] allGasTypesTextFile)

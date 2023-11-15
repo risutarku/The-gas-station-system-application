@@ -20,7 +20,5 @@ namespace АЗС
             get { return fuelTypeName; }
             set { fuelTypeName = value; }
         }
-
-
     }
 }

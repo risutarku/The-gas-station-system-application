@@ -39,20 +39,5 @@ namespace АЗС
                 Console.WriteLine($"{station.Name}");
             Console.WriteLine();
         }
-        public static void PrintPreOrderCheque(
-                (Station chosenStation, string chosenFuel, int fuelAmount) purchaseInformation,
-                Dictionary<int, int> discounts)
-        {
-            Station chosenStation = purchaseInformation.Item1;
-            string chosenFuel = purchaseInformation.Item2;
-            int fuelAmount = purchaseInformation.Item3;
-            int priceOfSelectedStation = chosenStation.GasPrice[chosenFuel];
-            int totalPrice = Calculations.CountTotalPrice(priceOfSelectedStation, fuelAmount);
-            int discount = GetClass.GetDiscount(discounts, fuelAmount);
-            double finalPriceWithDiscount = Calculations.CountDiscountPrice(totalPrice, discount); // итоговая сумма со скидкой скидки
-
-            Console.WriteLine(NoIdea.CreatePreOrderCheque(chosenStation, chosenFuel, fuelAmount, discounts));
-
-        }
     }
 }

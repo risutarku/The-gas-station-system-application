@@ -57,28 +57,5 @@ namespace АЗС
                 }
             }
         }
-
-        public static (Station chosenStation, string chosenFuel, int fuelAmount) OrderByStationList(List<Station> stationList)
-        {
-            Print.PrintStationList(stationList);
-            Station chosenStation = GetClass.GetStation(stationList);
-            chosenStation.PrintInfo();
-            string chosenFuel = GetClass.GetFuelType(chosenStation.Gas);
-            int fuelAmount = GetClass.GetFuelAmount();
-
-            while (true)
-            {
-                if (!Check.IsFuelAmountAvailableOnSelectedStationAndFuelType(chosenStation, chosenFuel, fuelAmount))
-                {
-                    InfoMessage.FuelAmountErrorMessage();
-                    fuelAmount = GetClass.GetFuelAmount();
-                }
-                else
-                {
-                    return (chosenStation, chosenFuel, fuelAmount);
-                }
-            }
-
-        }
     }
 }

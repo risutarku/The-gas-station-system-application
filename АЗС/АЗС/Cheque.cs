@@ -14,9 +14,6 @@ namespace АЗС
         private int fuelAmount;
         private int purchaseAmount;
         private string chequeString = "";
-        //private int discount;
-        //private double discountSize;
-        //private double purchaseAmountWithDiscount;
 
         public Cheque(string chequeString)
         {
