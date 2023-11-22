@@ -16,7 +16,7 @@ namespace АЗС
             {
                 Order myOrder = NewProcess(net);
                 Cheque myCheque = myOrder.CreateCheque();
-                myCheque.PrintCheque();
+                ChequeService.PrintCheque(myCheque);
                 if (SomeProcess.ConfirmOrder() == "1")
                 {
                     if (SomeProcess.RestartOrder() == "1")
@@ -24,7 +24,7 @@ namespace АЗС
                     else
                     {
                         FileWork.ChangeStationData(net.Stations, myOrder.ChosenStation.Name, myOrder.ChosenFuel.FuelTypeName, myOrder.FuelAmount);
-                        myCheque.WriteCheque();
+                        ChequeService.WriteCheque(myCheque);
                         break;
                     }
                 }
@@ -43,23 +43,23 @@ namespace АЗС
         {
             SomeProcess.ChooseToPrintFuelOrStationList();
             Print.PrintStationList(net.Stations);
-            Station chosenStation = net.SelectStation();
+            Station chosenStation = NetworkStationService.SelectStation(net);
             chosenStation.PrintInfo();
-            CurrentFuel chosenFuel = chosenStation.SelectFuel();
-            int fuelAmount = chosenStation.ChooseFuelAmount(chosenFuel);
-            Discount discount = net.GetDiscountSize(fuelAmount);
+            CurrentFuel chosenFuel = StationService.SelectFuel(chosenStation);
+            int fuelAmount = StationService.ChooseFuelAmount(chosenFuel);
+            Discount discount = NetworkStationService.GetDiscountSize(net, fuelAmount);
 
             while (true)
             {
                 if (!Check.IsFuelAmountAvailableOnSelectedStationAndFuelType(chosenStation, chosenFuel.FuelTypeName, fuelAmount))
                 {
                     InfoMessage.FuelAmountErrorMessage();
-                    fuelAmount = chosenStation.ChooseFuelAmount(chosenFuel);
-                    discount = net.GetDiscountSize(fuelAmount);
+                    fuelAmount = StationService.ChooseFuelAmount(chosenFuel);
+                    discount = NetworkStationService.GetDiscountSize(net, fuelAmount);
                 }
                 else
                 {
-                    return new Order(chosenStation, chosenFuel, fuelAmount, discount);
+                    return chosenStation.MakeOrder(chosenFuel, fuelAmount, discount);
                 }
             }
         }

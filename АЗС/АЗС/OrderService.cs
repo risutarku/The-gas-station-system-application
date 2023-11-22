@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace АЗС
 {
-    internal class Calculations
+    internal class OrderService
     {
         public static double CountDiscount(int totalPriceWithoutDiscount, double finalPriceWithDiscount)
         {

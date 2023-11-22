@@ -27,35 +27,5 @@ namespace АЗС
             get { return discounts; }
             set { discounts = value; }
         }
-
-        public Discount GetDiscountSize(int fuelAmount)
-        {
-            int discountSize = 0;
-            foreach (KeyValuePair<int, int> kvp in Discounts)
-            {
-                if (fuelAmount > kvp.Key)
-                    discountSize = kvp.Value;
-            }
-            return new Discount(discountSize);
-        }
-
-        public  Station SelectStation()
-        {
-            string chosenStationName;
-            while (true)
-            {
-                chosenStationName = EnterInfo.EnterStationName();
-
-                if (Check.IsStationNameInStationList(this.Stations, chosenStationName))
-                {
-                    return Check.FindStationByStationName(this.Stations, chosenStationName);
-                }
-                else
-                {
-                    InfoMessage.IncorrectStationInputErrorMessage();
-                    continue;
-                }
-            }
-        }
     }
 }

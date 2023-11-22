@@ -28,9 +28,9 @@ namespace АЗС
 
         public Cheque CreateCheque()
         {
-            int totalPrice = Calculations.CountTotalPrice(ChosenStation.GasPrice[ChosenFuel.FuelTypeName], FuelAmount);
-            double finalPriceWithDiscount = Calculations.CountDiscountPrice(totalPrice, DiscountSize);
-            double discountAmount = Calculations.CountDiscount(totalPrice, finalPriceWithDiscount);
+            int totalPrice = OrderService.CountTotalPrice(ChosenStation.GasPrice[ChosenFuel.FuelTypeName], FuelAmount);
+            double finalPriceWithDiscount = OrderService.CountDiscountPrice(totalPrice, DiscountSize);
+            double discountAmount = OrderService.CountDiscount(totalPrice, finalPriceWithDiscount);
             string cheque = "";
             cheque += $"Ваш заказ\n" +
                 $"АЗС: {ChosenStation.Name}, ул. {ChosenStation.Address}\n" +

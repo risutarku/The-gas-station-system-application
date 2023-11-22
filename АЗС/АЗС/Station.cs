@@ -56,55 +56,6 @@ namespace АЗС
 
         }
 
-        /*
-        public static int GetDiscountSize(NetworkStation network, int fuelAmount)
-        {
-            int discountSize = 0;
-            foreach (KeyValuePair<int, int> kvp in network.Discounts)
-            {
-                if (fuelAmount > kvp.Key)
-                    discountSize = kvp.Value;
-            }
-            return discountSize;
-        }
-        */
-
-        public  CurrentFuel SelectFuel()
-        {
-            string chosenFuel;
-            while (true)
-            {
-                Print.ShowFuelList(Gas);
-                chosenFuel = EnterInfo.EnterFuelType();
-
-                if (!(Gas.Contains(chosenFuel)))
-                {
-                    InfoMessage.IncorrectFuelInputErrorMessage();
-                    continue;
-                }
-                else
-                    return new CurrentFuel(chosenFuel);
-            }
-        }
-
-        public int ChooseFuelAmount(CurrentFuel chosenFuel)
-        {
-            while (true)
-            {
-                string inputFuelAmount = EnterInfo.EnterFuelAmount();
-                int fuelAmount = Check.CheckCorrectInput(inputFuelAmount);
-
-                if (fuelAmount == 0)
-                {
-                    InfoMessage.IncorrectFuelAmountInpurErrorMessage();
-                    continue;
-
-                }
-                else
-                    return fuelAmount;
-            }
-        }
-
         public string Name
         { 
             get { return name; } 
