@@ -8,30 +8,22 @@ namespace АЗС
 {
     internal class NetworkStationService
     {
-        public static Discount GetDiscountSize(NetworkStation net, int fuelAmount)
-        {
-            int discountSize = 0;
-            foreach (KeyValuePair<int, int> kvp in net.Discounts)
-            {
-                if (fuelAmount > kvp.Key)
-                    discountSize = kvp.Value;
-            }
-            return new Discount(discountSize);
-        }
         public static Station SelectStation(NetworkStation net)
         {
+            Print.SelectStationMessage(); 
+            Print.PrintStationList(net.Stations);
             string chosenStationName;
             while (true)
             {
                 chosenStationName = EnterInfo.EnterStationName();
 
-                if (Check.IsStationNameInStationList(net.Stations, chosenStationName))
+                if (Verification.IsStationNameInStationList(net.Stations, chosenStationName))
                 {
-                    return Check.FindStationByStationName(net.Stations, chosenStationName);
+                    return Verification.FindStationByStationName(net.Stations, chosenStationName);
                 }
                 else
                 {
-                    InfoMessage.IncorrectStationInputErrorMessage();
+                    Print.IncorrectStationInputErrorMessage();
                     continue;
                 }
             }

@@ -14,12 +14,12 @@ namespace АЗС
             string chosenFuel;
             while (true)
             {
-                Print.ShowFuelList(station.Gas);
+                Print.PrintFuelList(station.Gas);
                 chosenFuel = EnterInfo.EnterFuelType();
 
                 if (!(station.Gas.Contains(chosenFuel)))
                 {
-                    InfoMessage.IncorrectFuelInputErrorMessage();
+                    Print.IncorrectFuelInputErrorMessage();
                     continue;
                 }
                 else
@@ -32,11 +32,11 @@ namespace АЗС
             while (true)
             {
                 string inputFuelAmount = EnterInfo.EnterFuelAmount();
-                int fuelAmount = Check.CheckCorrectInput(inputFuelAmount);
+                int fuelAmount = Verification.CheckCorrectInput(inputFuelAmount);
 
                 if (fuelAmount == 0)
                 {
-                    InfoMessage.IncorrectFuelAmountInpurErrorMessage();
+                    Print.IncorrectFuelAmountInpurErrorMessage();
                     continue;
 
                 }

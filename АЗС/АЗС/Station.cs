@@ -51,10 +51,6 @@ namespace АЗС
             GasReserve = gasAmount;
         }
 
-        public Station()
-        {
-
-        }
 
         public string Name
         { 
@@ -84,21 +80,6 @@ namespace АЗС
         {
             get { return gasReserve; }
             set { gasReserve = value; }
-        }
-
-        public void PrintInfo()
-        {   
-            Console.WriteLine(
-                    "Название: {0,10}   Адрес: {1,10}", name, address
-                );
-            Console.WriteLine(
-                    "{0,10} | {1,10} | {2,10}","Топливо", "Цена, руб ", "Запасы, л"
-                );
-            foreach (var gas in gasPrice)
-                Console.WriteLine(
-                        "{0,10} | {1,10} | {2,10}", gas.Key, gas.Value, gasReserve[gas.Key]
-                    );
-            Console.WriteLine();
         }
     }
 }

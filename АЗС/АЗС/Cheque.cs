@@ -9,7 +9,6 @@ namespace АЗС
 {
     internal class Cheque
     {
-        private CurrentFuel chosenFuel;
         private string chequeString = "";
 
         public Cheque(string chequeString)

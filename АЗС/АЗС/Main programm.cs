@@ -14,28 +14,25 @@ internal class Program
     {
         if (args.Length == 0)
         {
-            InfoMessage.FileNotExistsMessage();
+            Print.FileNotExistsMessage();
             return;
         }
 
-        //экземпляр класса?
         string stationsFilePath = args[0];
         if (!File.Exists(stationsFilePath))
         {
-            InfoMessage.FileNameNotExistsMessage();
+            Print.FileNameNotExistsMessage();
             return;
         }
 
-        //экземпляр класса?
         string gasTypesFilePath = args[1];
         if (!File.Exists(gasTypesFilePath))
         {
-            InfoMessage.FileNameNotExistsMessage();
+            Print.FileNameNotExistsMessage();
             return;
         }
-        //экземпляр класса?
+
         string[] allGasTypesTextFile = File.ReadAllLines(gasTypesFilePath);
-        //экземпляр класса?
         string[] TextFile = File.ReadAllLines(stationsFilePath);
 
         NetworkStation net = FileWork.MakeStationsNetwork(FileWork.ReadStationsInfo(TextFile), FileWork.ReadGasInfo(allGasTypesTextFile).Item2);

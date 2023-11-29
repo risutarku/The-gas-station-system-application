@@ -21,10 +21,6 @@ namespace АЗС
             FuelAmount = fuelAmount;
             DiscountSize = discount.DiscountSize;
         }
-        public Order()
-        {
-
-        }
 
         public Cheque CreateCheque()
         {
@@ -40,7 +36,7 @@ namespace АЗС
             return new Cheque(cheque);
         }
 
-
+        // write fields in top of class without set`s
         public int DiscountSize
         {
             get { return discountSize; }

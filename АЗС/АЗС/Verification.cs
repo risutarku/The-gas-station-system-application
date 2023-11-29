@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace АЗС
 {
-    internal class Check
+    internal class Verification
     {
         public static int CheckCorrectInput(string inputFuelAmount)
         {
@@ -17,19 +17,6 @@ namespace АЗС
             }
             else
                 return 0;
-        }
-        public static bool IsGasAvailable(string myFuelType, int fuelAmount, Station gasStation) // проверка станции на наличие данного количества и типа топлива // done
-        {
-            bool availability = false;
-            if (gasStation.GasPrice.ContainsKey(myFuelType))
-            {
-                int localFuelAmount = gasStation.GasReserve[myFuelType];
-                if (localFuelAmount >= fuelAmount)
-                {
-                    availability = true;
-                }
-            }
-            return availability;
         }
         public static bool IsStationNameInStationList(List<Station> availableStations, string chosenStationName)
         {
@@ -42,7 +29,6 @@ namespace АЗС
         }
         public static Station FindStationByStationName(List<Station> availableStations, string chosenStationName)
         {
-            Station tmpStation = new Station();
             foreach (Station station in availableStations)
             {
                 if (station.Name.ToUpper() == chosenStationName)

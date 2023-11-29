@@ -11,22 +11,22 @@ namespace АЗС
         public static string EnterFuelType()
         {
             string chosenFuel;
-            InfoMessage.InputMessage();
+            Print.InputMessage();
             chosenFuel = Console.ReadLine().ToUpper().Trim();
 
             return chosenFuel;
         }
         public static string EnterFuelAmount()
         {
-            InfoMessage.InputFuelAmountMessage();
-            InfoMessage.InputMessage();
+            Print.InputFuelAmountMessage();
+            Print.InputMessage();
             string fuelAmount = Console.ReadLine().Trim();
             return fuelAmount;
         }
         public static string EnterStationName()
         {
             string chosenStationName;
-            InfoMessage.InputMessage();
+            Print.InputMessage();
             chosenStationName = Console.ReadLine().ToUpper().Trim();
 
             return chosenStationName;
@@ -35,19 +35,19 @@ namespace АЗС
         {
             while (true)
             {
-                InfoMessage.AskConfirmOrderMessage();
-                InfoMessage.InputMessage();
+                Print.AskConfirmOrderMessage();
+                Print.InputMessage();
                 string answer = Console.ReadLine();
                 if (answer == "1")
                 {
-                    InfoMessage.DoneOrderMessage();
+                    Print.DoneOrderMessage();
                     return answer;
                 }
                 else if (answer == "2")
                     return answer;
                 else
                 {
-                    InfoMessage.IncorrectInputMessage();
+                    Print.IncorrectInputMessage();
                     continue;
                 }
             }
@@ -56,14 +56,14 @@ namespace АЗС
         {
             while (true)
             {
-                InfoMessage.AskRestartOrderMessage();
-                InfoMessage.InputMessage();
+                Print.AskRestartOrderMessage();
+                Print.InputMessage();
                 string answer = Console.ReadLine();
                 if (answer == "1" || answer == "2")
                     return answer;
                 else
                 {
-                    InfoMessage.IncorrectInputMessage();
+                    Print.IncorrectInputMessage();
                     continue;
                 }
             }
@@ -72,8 +72,8 @@ namespace АЗС
         {
             while (true)
             {
-                InfoMessage.ChooseToPrintStationOrGasList();
-                InfoMessage.InputMessage();
+                Print.ChooseToPrintStationOrGasList();
+                Print.InputMessage();
 
                 string answer = Console.ReadLine();
 
@@ -81,7 +81,7 @@ namespace АЗС
                     return answer;
                 else
                 {
-                    InfoMessage.IncorrectInputMessage();
+                    Print.IncorrectInputMessage();
                     continue;
                 }
             }

@@ -8,6 +8,7 @@ namespace АЗС
 {
     internal class OrderService
     {
+        // in order?
         public static double CountDiscount(int totalPriceWithoutDiscount, double finalPriceWithDiscount)
         {
             return Math.Round((totalPriceWithoutDiscount - finalPriceWithDiscount), 2);

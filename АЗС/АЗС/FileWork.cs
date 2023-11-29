@@ -10,7 +10,6 @@ namespace АЗС
     {
         public static void ChangeStationData(List<Station> stations, string selectedStationName, string myFuelType, int fuelAmount)
         {
-            Station localStation = new Station();
             foreach (Station station in stations)
             {
                 if (station.Name == selectedStationName)
@@ -96,6 +95,13 @@ namespace АЗС
                 }
             }
             return stationList;
+        }
+        public static void WriteCheque(Cheque cheque)
+        {
+            using (StreamWriter SW = new StreamWriter("./Check.txt", false))
+            {
+                SW.WriteLine(cheque.ChequeString);
+            }
         }
 
         public static NetworkStation MakeStationsNetwork(List<Station> stations, Dictionary<int, int> discounts)
