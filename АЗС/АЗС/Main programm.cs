@@ -7,8 +7,13 @@ using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Runtime.CompilerServices;
 using System.Reflection;
+using АЗС.UserInterface;
+using АЗС.DataAccess;
+using АЗС.BuisnessLogic;
 
-internal class Program
+
+
+public class Program
 {
     private static void Main(string[] args)
     {

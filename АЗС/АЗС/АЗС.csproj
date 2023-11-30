@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\АЗС.BuisnessLogic\АЗС.BuisnessLogic.csproj" />
+    <ProjectReference Include="..\АЗС.DatatAccess\АЗС.DataAccess.csproj" />
+    <ProjectReference Include="..\АЗС.UserInterface\АЗС.UserInterface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Properties\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>

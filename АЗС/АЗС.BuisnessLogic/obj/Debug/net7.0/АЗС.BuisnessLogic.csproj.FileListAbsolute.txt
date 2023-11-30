@@ -1,0 +1,12 @@
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\АЗС.BuisnessLogic.csproj.AssemblyReference.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\АЗС.BuisnessLogic.GeneratedMSBuildEditorConfig.editorconfig
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\АЗС.BuisnessLogic.AssemblyInfoInputs.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\АЗС.BuisnessLogic.AssemblyInfo.cs
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\АЗС.BuisnessLogic.csproj.CoreCompileInputs.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\bin\Debug\net7.0\АЗС.BuisnessLogic.deps.json
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\bin\Debug\net7.0\АЗС.BuisnessLogic.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\bin\Debug\net7.0\АЗС.BuisnessLogic.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\АЗС.BuisnessLogic.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\refint\АЗС.BuisnessLogic.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\АЗС.BuisnessLogic.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.BuisnessLogic\obj\Debug\net7.0\ref\АЗС.BuisnessLogic.dll

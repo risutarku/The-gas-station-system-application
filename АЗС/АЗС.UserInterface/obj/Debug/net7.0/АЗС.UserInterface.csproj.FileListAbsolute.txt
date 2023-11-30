@@ -1,0 +1,15 @@
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.csproj.AssemblyReference.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.GeneratedMSBuildEditorConfig.editorconfig
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.AssemblyInfoInputs.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.AssemblyInfo.cs
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.csproj.CoreCompileInputs.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\bin\Debug\net7.0\АЗС.UserInterface.deps.json
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\bin\Debug\net7.0\АЗС.UserInterface.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\bin\Debug\net7.0\АЗС.UserInterface.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\bin\Debug\net7.0\АЗС.BuisnessLogic.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\bin\Debug\net7.0\АЗС.BuisnessLogic.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.csproj.CopyComplete
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\refint\АЗС.UserInterface.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\АЗС.UserInterface.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.UserInterface\obj\Debug\net7.0\ref\АЗС.UserInterface.dll

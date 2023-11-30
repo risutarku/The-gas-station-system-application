@@ -1,0 +1,15 @@
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.csproj.AssemblyReference.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.AssemblyInfoInputs.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.AssemblyInfo.cs
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.csproj.CoreCompileInputs.cache
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\bin\Debug\net7.0\АЗС.DataAccess.deps.json
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\bin\Debug\net7.0\АЗС.DataAccess.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\bin\Debug\net7.0\АЗС.DataAccess.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\bin\Debug\net7.0\АЗС.BuisnessLogic.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\bin\Debug\net7.0\АЗС.BuisnessLogic.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.csproj.CopyComplete
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\refint\АЗС.DataAccess.dll
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\АЗС.DataAccess.pdb
+D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\АЗС.DatatAccess\obj\Debug\net7.0\ref\АЗС.DataAccess.dll

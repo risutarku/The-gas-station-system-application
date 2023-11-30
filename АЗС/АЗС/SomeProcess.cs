@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using АЗС.UserInterface;
+using АЗС.DataAccess;
+using АЗС.BuisnessLogic;
 
 namespace АЗС
 {
-    internal class SomeProcess
+    public class SomeProcess
     {
 
         public static void Process(NetworkStation net)
