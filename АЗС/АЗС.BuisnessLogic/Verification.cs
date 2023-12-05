@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace АЗС.BuisnessLogic
 {
@@ -22,7 +23,7 @@ namespace АЗС.BuisnessLogic
         {
             foreach (Station station in availableStations)
             {
-                if (station.Name.ToUpper() == chosenStationName)
+                if (station.Name.ToUpper() == chosenStationName.ToUpper())
                     return true;
             }
             return false;
@@ -31,18 +32,20 @@ namespace АЗС.BuisnessLogic
         {
             foreach (Station station in availableStations)
             {
-                if (station.Name.ToUpper() == chosenStationName)
+                if (station.Name.ToUpper() == chosenStationName.ToUpper())
                     return station;
             }
-
             return null;
         }
         public static bool IsFuelAmountAvailableOnSelectedStationAndFuelType(Station chosenStation, string chosenFuel, int fuelAmount)
         {
-            if (chosenStation.GasReserve[chosenFuel] < fuelAmount)
+            if (!(chosenStation.Gas.Contains(chosenFuel)))
                 return false;
-            else
+            
+            if (chosenStation.GasReserve[chosenFuel] >= fuelAmount && fuelAmount > 0)
                 return true;
+            else
+                return false;
         }
     }
 }

@@ -68,23 +68,5 @@ namespace АЗС.UserInterface
                 }
             }
         }
-        public static string EnterChooseToPrintFuelOrStationListAnswer()
-        {
-            while (true)
-            {
-                Print.ChooseToPrintStationOrGasList();
-                Print.InputMessage();
-
-                string answer = Console.ReadLine();
-
-                if (answer == "1" || answer == "2")
-                    return answer;
-                else
-                {
-                    Print.IncorrectInputMessage();
-                    continue;
-                }
-            }
-        }
     }
 }

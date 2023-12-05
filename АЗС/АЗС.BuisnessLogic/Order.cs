@@ -22,6 +22,10 @@ namespace АЗС.BuisnessLogic
             DiscountSize = discount.DiscountSize;
         }
 
+        public Order()
+        {
+
+        }
         public Cheque CreateCheque()
         {
             int totalPrice = CountTotalPrice(ChosenStation.GasPrice[ChosenFuel.FuelTypeName], FuelAmount);
@@ -47,7 +51,7 @@ namespace АЗС.BuisnessLogic
         private static double CountDiscountPrice(int totalPrice, int discount)
         {
             double discountPrice = Convert.ToDouble(totalPrice) * (1 - (Convert.ToDouble(discount) / 100));
-            return discountPrice;
+            return Math.Round(discountPrice, 2);
         } // сумма со скидкой
     }
 }

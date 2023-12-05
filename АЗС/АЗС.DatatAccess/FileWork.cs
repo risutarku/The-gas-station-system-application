@@ -22,7 +22,7 @@ namespace АЗС.DataAccess
             int counterGasTypes = 0;
             List<string> allGasList = new List<string>();
             Dictionary<int, int> discounts = new Dictionary<int, int>();
-
+            
             for (int i = 0; i < allGasTypesTextFile.Length; i++)
             {
                 if (allGasTypesTextFile[i] == "")
@@ -88,7 +88,6 @@ namespace АЗС.DataAccess
                 {
                     counter = 0;
                     stationList.Add(new Station(nameAddress, localStationGasList, gasPrice, gasAmount));
-                    //stationList.Add(Station.Create(nameAddress, localStationGasList, gasPrice, gasAmount));
                     nameAddress = new string[] { };
                     localStationGasList = new List<string>();
                     gasPrice = new Dictionary<string, int>();

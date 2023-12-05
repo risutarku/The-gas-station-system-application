@@ -20,9 +20,9 @@ namespace АЗС
                 Order myOrder = NewProcess(net);
                 Cheque myCheque = myOrder.CreateCheque();
                 Print.PrintCheque(myCheque);
-                if (SomeProcess.ConfirmOrder() == "1")
+                if (ConfirmOrder() == "1")
                 {
-                    if (SomeProcess.RestartOrder() == "1")
+                    if (RestartOrder() == "1")
                         continue;
                     else
                     {
@@ -33,7 +33,7 @@ namespace АЗС
                 }
                 else
                 {
-                    if (SomeProcess.RestartOrder() == "1")
+                    if (RestartOrder() == "1")
                         continue;
                     else
                         break;
@@ -41,7 +41,7 @@ namespace АЗС
             }
         }
 
-        public static Order NewProcess(NetworkStation net)
+        private static Order NewProcess(NetworkStation net)
         {
             Station chosenStation = NetworkStationService.SelectStation(net);
             Print.PrintInfo(chosenStation);
@@ -63,12 +63,12 @@ namespace АЗС
                 }
             }
         }
-        public static string ConfirmOrder()
+        private static string ConfirmOrder()
         {
             string answer = EnterInfo.EnterConfirmOrderAnswer();
             return answer;
         }
-        public static string RestartOrder()
+        private static string RestartOrder()
         {
             string answer = EnterInfo.EnterRestatrtOrderAnswer();
             return answer;
