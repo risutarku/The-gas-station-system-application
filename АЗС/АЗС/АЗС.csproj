@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\АЗС.BuisnessLogic\АЗС.BuisnessLogic.csproj" />
     <ProjectReference Include="..\АЗС.DatatAccess\АЗС.DataAccess.csproj" />
     <ProjectReference Include="..\АЗС.UserInterface\АЗС.UserInterface.csproj" />

@@ -9,10 +9,10 @@ namespace АЗС.BuisnessLogic
 {
     public class Order
     {
-        private int DiscountSize { get; set; }
+        public int DiscountSize { get; set; }
         public CurrentFuel ChosenFuel { get; set; }
         public Station ChosenStation { get; set; }
-        public int FuelAmount { get; set; }
+        public int FuelAmount { get;  set; }
 
         public Order(Station chosenStation, CurrentFuel chosenFuel, int fuelAmount, Discount discount)
         {
@@ -20,11 +20,6 @@ namespace АЗС.BuisnessLogic
             ChosenFuel = chosenFuel;
             FuelAmount = fuelAmount;
             DiscountSize = discount.DiscountSize;
-        }
-
-        public Order()
-        {
-
         }
         public Cheque CreateCheque()
         {

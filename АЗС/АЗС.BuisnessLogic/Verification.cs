@@ -9,7 +9,7 @@ namespace АЗС.BuisnessLogic
 {
     public class Verification
     {
-        public static int CheckCorrectInput(string inputFuelAmount)
+        public static int CheckCorrectInput(string inputFuelAmount)//userInterface
         {
             if (int.TryParse(inputFuelAmount, out int fuelAmount))
             {
@@ -19,7 +19,7 @@ namespace АЗС.BuisnessLogic
             else
                 return 0;
         }
-        public static bool IsStationNameInStationList(List<Station> availableStations, string chosenStationName)
+        public static bool IsStationNameInStationList(List<Station> availableStations, string chosenStationName)//station
         {
             foreach (Station station in availableStations)
             {
@@ -28,16 +28,15 @@ namespace АЗС.BuisnessLogic
             }
             return false;
         }
-        public static Station FindStationByStationName(List<Station> availableStations, string chosenStationName)
+        public static Station FindStationByStationName(List<Station> availableStations, string chosenStationName)//station
         {
-            foreach (Station station in availableStations)
+            if (IsStationNameInStationList(availableStations, chosenStationName))
             {
-                if (station.Name.ToUpper() == chosenStationName.ToUpper())
-                    return station;
+                return availableStations.Find(x => x.Name.ToUpper() == chosenStationName.ToUpper());
             }
             return null;
         }
-        public static bool IsFuelAmountAvailableOnSelectedStationAndFuelType(Station chosenStation, string chosenFuel, int fuelAmount)
+        public static bool IsFuelAmountAvailableOnSelectedStationAndFuelType(Station chosenStation, string chosenFuel, int fuelAmount)//station
         {
             if (!(chosenStation.Gas.Contains(chosenFuel)))
                 return false;

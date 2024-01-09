@@ -11,7 +11,7 @@ namespace АЗС.BuisnessLogic
 {
     public class Station
     {
-        public string Name { get; set; }
+        public string Name { get; }
         public string Address { get; set; }
         public List<string> Gas { get; set; }
         public Dictionary<string, int> GasPrice { get; set; }

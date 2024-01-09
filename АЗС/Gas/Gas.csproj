@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Elements\gas-pump-alt.png" />
+    <None Remove="Elements\house-chimney.png" />
+    <None Remove="Elements\info.png" />
+    <None Remove="Elements\SationsLogos\gas-station.png" />
+    <None Remove="Elements\SationsLogos\gas-station2.png" />
+    <None Remove="Files\GasTypes.txt" />
+    <None Remove="Files\Stations.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\АЗС.BuisnessLogic\АЗС.BuisnessLogic.csproj" />
+    <ProjectReference Include="..\АЗС.DatatAccess\АЗС.DataAccess.csproj" />
+    <ProjectReference Include="..\АЗС.UserInterface\АЗС.UserInterface.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Elements\gas-pump-alt.png" />
+    <Resource Include="Elements\house-chimney.png" />
+    <Resource Include="Elements\info.png" />
+    <Resource Include="Elements\SationsLogos\gas-station.png" />
+    <Resource Include="Elements\SationsLogos\gas-station2.png" />
+    <Resource Include="Files\GasTypes.txt" />
+    <Resource Include="Files\Stations.txt" />
+  </ItemGroup>
+
+</Project>

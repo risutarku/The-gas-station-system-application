@@ -1,0 +1,35 @@
+﻿<Window x:Class="Gas.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gas"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="600"
+        Loaded="MainWindow_Loaded">
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Width="100" Background="AliceBlue">
+            <Button Height="80" Background="AliceBlue" ToolTip="Главная" BorderThickness="0" Click="Home_Click">
+                <Image Source="D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\GasWPF\Elements\house-chimney.png" Height="50" Width="50"></Image>
+            </Button>
+            <Button Height="80" Background="AliceBlue" ToolTip="Заправиться" BorderThickness="0"  Click="Order_Click">
+                <Image Source="D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\GasWPF\Elements\gas-pump-alt.png" Height="50" Width="50"></Image>
+            </Button>
+            <Button Height="80" Background="AliceBlue" ToolTip="Помощь" BorderThickness="0" Click="Info_Click">
+                <Image Source="D:\vitek\C#\Технология программирования\Gas-station-app\АЗС\GasWPF\Elements\info.png" Height="50" Width="50"></Image>
+            </Button>
+
+        </StackPanel>
+
+        <Grid Background="Beige">
+            <ContentControl x:Name="contentControl">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,10">
+                    <TextBlock TextWrapping="Wrap" Margin="10,10,10,10" TextAlignment="Center" FontSize="25" Foreground="#FF471212" HorizontalAlignment="Center"
+                    Text="Добро пожаловать в систему Goртопливо.&#xA;У нас можно заправить  авто на одной из АЗС города.&#xA;Воспользуйтесь меню слева, чтобы совершить покупку!" Height="214" Width="410" 
+                />
+                </StackPanel>
+            </ContentControl>
+
+        </Grid>
+    </DockPanel>
+</Window>

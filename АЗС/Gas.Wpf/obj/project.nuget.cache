@@ -1,0 +1,36 @@
+{
+  "version": 2,
+  "dgSpecHash": "Z+X3vAUCiQ23gugJaeSblypH/Xe3BAG9Ouez26yuFetIg+5KT8GeG1zQQvTS1lzyPxcuc4peiEkR56ej3Iblkw==",
+  "success": false,
+  "projectFilePath": "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\Gas.Wpf\\Gas.Wpf.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project АЗС.UserInterface is not compatible with net5.0-windows7.0 (.NETCoreApp,Version=v5.0). Project АЗС.UserInterface supports: net7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "АЗС.UserInterface",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project АЗС.DataAccess is not compatible with net5.0-windows7.0 (.NETCoreApp,Version=v5.0). Project АЗС.DataAccess supports: net7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "АЗС.DataAccess",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project АЗС.BuisnessLogic is not compatible with net5.0-windows7.0 (.NETCoreApp,Version=v5.0). Project АЗС.BuisnessLogic supports: net7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "АЗС.BuisnessLogic",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    }
+  ]
+}

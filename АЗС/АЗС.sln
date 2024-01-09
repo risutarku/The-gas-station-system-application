@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "АЗС.UserInterface", "А�
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "АЗС.BuisnessLogic", "АЗС.BuisnessLogic\АЗС.BuisnessLogic.csproj", "{6DC684D4-CF36-4529-B52A-10B5F22C8945}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuisnessLogic.Tests", "BuisnessLogic.Tests\BuisnessLogic.Tests.csproj", "{901B7AF7-F89F-4C78-81CB-5303C740B8F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuisnessLogic.Tests", "BuisnessLogic.Tests\BuisnessLogic.Tests.csproj", "{901B7AF7-F89F-4C78-81CB-5303C740B8F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gas", "Gas\Gas.csproj", "{1ED66FF9-F12A-454D-A363-0B2F04A6F7DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{901B7AF7-F89F-4C78-81CB-5303C740B8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{901B7AF7-F89F-4C78-81CB-5303C740B8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{901B7AF7-F89F-4C78-81CB-5303C740B8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ED66FF9-F12A-454D-A363-0B2F04A6F7DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ED66FF9-F12A-454D-A363-0B2F04A6F7DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ED66FF9-F12A-454D-A363-0B2F04A6F7DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ED66FF9-F12A-454D-A363-0B2F04A6F7DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

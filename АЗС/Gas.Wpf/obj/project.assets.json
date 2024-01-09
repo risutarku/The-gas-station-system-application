@@ -1,0 +1,170 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0-windows7.0": {
+      "АЗС.BuisnessLogic/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/АЗС.BuisnessLogic.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/АЗС.BuisnessLogic.dll": {}
+        }
+      },
+      "АЗС.DataAccess/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/АЗС.DataAccess.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/АЗС.DataAccess.dll": {}
+        }
+      },
+      "АЗС.UserInterface/1.0.0": {
+        "type": "project",
+        "framework": "Unsupported,Version=v0.0",
+        "compile": {
+          "bin/placeholder/АЗС.UserInterface.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/АЗС.UserInterface.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "АЗС.BuisnessLogic/1.0.0": {
+      "type": "project",
+      "path": "../АЗС.BuisnessLogic/АЗС.BuisnessLogic.csproj",
+      "msbuildProject": "../АЗС.BuisnessLogic/АЗС.BuisnessLogic.csproj"
+    },
+    "АЗС.DataAccess/1.0.0": {
+      "type": "project",
+      "path": "../АЗС.DatatAccess/АЗС.DataAccess.csproj",
+      "msbuildProject": "../АЗС.DatatAccess/АЗС.DataAccess.csproj"
+    },
+    "АЗС.UserInterface/1.0.0": {
+      "type": "project",
+      "path": "../АЗС.UserInterface/АЗС.UserInterface.csproj",
+      "msbuildProject": "../АЗС.UserInterface/АЗС.UserInterface.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0-windows7.0": [
+      "АЗС.BuisnessLogic >= 1.0.0",
+      "АЗС.DataAccess >= 1.0.0",
+      "АЗС.UserInterface >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\vitye\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\Gas.Wpf\\Gas.Wpf.csproj",
+      "projectName": "Gas.Wpf",
+      "projectPath": "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\Gas.Wpf\\Gas.Wpf.csproj",
+      "packagesPath": "C:\\Users\\vitye\\.nuget\\packages\\",
+      "outputPath": "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\Gas.Wpf\\obj\\",
+      "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+      ],
+      "configFilePaths": [
+        "C:\\Users\\vitye\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0-windows"
+      ],
+      "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0-windows7.0": {
+          "targetAlias": "net5.0-windows",
+          "projectReferences": {
+            "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\АЗС.BuisnessLogic\\АЗС.BuisnessLogic.csproj": {
+              "projectPath": "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\АЗС.BuisnessLogic\\АЗС.BuisnessLogic.csproj"
+            },
+            "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\АЗС.DatatAccess\\АЗС.DataAccess.csproj": {
+              "projectPath": "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\АЗС.DatatAccess\\АЗС.DataAccess.csproj"
+            },
+            "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\АЗС.UserInterface\\АЗС.UserInterface.csproj": {
+              "projectPath": "D:\\vitek\\C#\\Технология программирования\\Gas-station-app\\АЗС\\АЗС.UserInterface\\АЗС.UserInterface.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0-windows7.0": {
+        "targetAlias": "net5.0-windows",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48",
+          "net481"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          },
+          "Microsoft.WindowsDesktop.App.WPF": {
+            "privateAssets": "none"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+      }
+    }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project АЗС.UserInterface is not compatible with net5.0-windows7.0 (.NETCoreApp,Version=v5.0). Project АЗС.UserInterface supports: net7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "АЗС.UserInterface",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project АЗС.DataAccess is not compatible with net5.0-windows7.0 (.NETCoreApp,Version=v5.0). Project АЗС.DataAccess supports: net7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "АЗС.DataAccess",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    },
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project АЗС.BuisnessLogic is not compatible with net5.0-windows7.0 (.NETCoreApp,Version=v5.0). Project АЗС.BuisnessLogic supports: net7.0 (.NETCoreApp,Version=v7.0)",
+      "libraryId": "АЗС.BuisnessLogic",
+      "targetGraphs": [
+        "net5.0-windows7.0"
+      ]
+    }
+  ]
+}

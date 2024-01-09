@@ -40,8 +40,8 @@ public class Program
         string[] allGasTypesTextFile = File.ReadAllLines(gasTypesFilePath);
         string[] TextFile = File.ReadAllLines(stationsFilePath);
 
-        NetworkStation net = FileWork.MakeStationsNetwork(FileWork.ReadStationsInfo(TextFile), FileWork.ReadGasInfo(allGasTypesTextFile).Item2);
-        SomeProcess.Process(net);
+        NetworkStation net = FileWorker.MakeStationsNetwork(FileWorker.ReadStationsInfo(TextFile), FileWorker.ReadGasInfo(allGasTypesTextFile));
+        MainController.StartApplication(net);
 
     }
 
